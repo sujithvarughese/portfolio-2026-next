@@ -169,7 +169,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                             component="a"
                             href={item.appStore}
                             variant="gradient"
-                            gradient={{ from: 'blue', to: 'purple' }}
+                            gradient={{ from: '#007AFF', to: '#0051D5', deg: 135 }}
                             size="md"
                             target="_blank"
                             leftSection={<FaAppStore size={18}/>}

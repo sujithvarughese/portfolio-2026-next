@@ -33,6 +33,7 @@ export const WorkTimeline = ({ data }: { data: ExperienceEntry[] }) => {
     <div
       className="w-full bg-gray-50 dark:bg-neutral-950 font-sans"
       ref={containerRef}
+      style={{ position: 'relative' }}
     >
       <div className="max-w-7xl mx-auto py-20 px-4 md:px-8 lg:px-10">
         <motion.h2 

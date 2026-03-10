@@ -26,7 +26,7 @@ export const SimpleTestimonials = ({
   };
 
   return (
-    <div className="mx-auto px-2 py-20 font-sans antialiased w-full max-w-sm md:max-w-lg md:px-8 lg:px-12">
+          <div className="mx-auto px-2 py-20 font-sans antialiased w-full max-w-sm md:max-w-lg md:px-8 lg:px-12">
       <div className="relative">
         <div className="relative h-60 w-60 md:h-80 md:w-80 m-auto">
           {testimonials.map((testimonial, index) => {
@@ -60,7 +60,7 @@ export const SimpleTestimonials = ({
             );
           })}
         </div>
-        <div className="flex flex-col justify-between py-4">
+                  <div className="flex flex-col justify-between py-4">
           <p className="mt-8 text-sm md:text-lg text-gray-500 dark:text-neutral-300 text-center px-2 break-words">
             {testimonials[active]?.quote}
           </p>

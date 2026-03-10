@@ -165,4 +165,26 @@
 
 html {
   scroll-behavior: smooth;
+  overflow-y: scroll; /* Always show scrollbar space to prevent layout shift */
+  overflow-x: hidden; /* Prevent horizontal scroll globally */
+}
+
+body {
+  min-height: 100vh;
+  overflow-x: hidden; /* Prevent horizontal scroll */
+}
+
+/* Prevent layout shift on navigation */
+* {
+  box-sizing: border-box;
+}
+
+/* Ensure consistent scrollbar behavior */
+:root {
+  scrollbar-gutter: stable;
+}
+
+/* Consistent container widths to prevent navbar shifting */
+[data-mantine-color-scheme] {
+  overflow-x: hidden;
 }

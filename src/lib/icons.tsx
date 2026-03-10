@@ -9,33 +9,6 @@ import { IoIosRocket } from 'react-icons/io'
 import { VscVscode } from 'react-icons/vsc'
 import { BiLogoTypescript } from "react-icons/bi";
 
-import { Badge, Flex } from '@mantine/core'
-
-interface IconPillProps {
-  name: string;
-  variant: string;
-  styles?: React.CSSProperties;
-}
-
-const IconPill = ({ name, variant, styles }: IconPillProps) => {
-  return (
-    <Badge variant="gradient" style={{ margin: "2px" }}>
-      <Flex
-        direction="row"
-        style={{
-          padding: "2px",
-          fontSize: "14px",
-          ...styles
-      }}>
-        <span>{name}</span>
-        {logos[name]}
-      </Flex>
-    </Badge>
-  )
-}
-
-export default IconPill
-
 export const logos: Record<string, React.ReactElement> = {
   "JavaScript": <RiJavascriptFill size="32px" />,
   "TypeScript": <BiLogoTypescript size="32px" />,
@@ -74,4 +47,3 @@ export const logos: Record<string, React.ReactElement> = {
   "Facebook": <FaFacebookF size="28px" />,
   "LinkedIn": <FaLinkedinIn size="28px" />
 }
-

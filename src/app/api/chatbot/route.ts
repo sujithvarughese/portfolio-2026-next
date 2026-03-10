@@ -25,8 +25,7 @@ export async function POST(request: Request) {
 
     const response = await openai.responses.create({
       model: 'gpt-4.1-mini',
-      instructions:
-        'You are a helpful chatbot for a portfolio website that answers questions about Sujith Varughese’s professional background only. Keep responses under 50 words. If asked about unrelated personal topics, politely say you only handle professional information. Use light humor when appropriate.',
+      instructions: process.env.OPENAI_PROMPT,
       tools: [
         {
           type: 'file_search',

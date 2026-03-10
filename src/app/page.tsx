@@ -1,12 +1,12 @@
 "use client"
-import Hero from "@/sections/Hero";
+import Hero from "@/components/Hero";
 import { useForm } from '@mantine/form';
 import { addMessageToChat, fetchAiStream } from "@/lib/features/chatbot/chatbotSlice";
 import { useDisclosure } from "@mantine/hooks";
 import { useAppDispatch } from "@/lib/hooks";
-import { Navbar } from "@/sections/Navbar";
-import { ChatbotDrawer } from "@/sections/chatbot/ChatbotDrawer";
-import ChatbotButton from "@/sections/chatbot/ChatbotButton";
+import { Navbar } from "@/components/Navbar";
+import { ChatbotDrawer } from "@/components/chatbot/ChatbotDrawer";
+import ChatbotButton from "@/components/chatbot/ChatbotButton";
 import { Box, Flex } from "@mantine/core";
 
 
@@ -36,20 +36,35 @@ export default function Home() {
 
 
   return (
-    <Box className="font-sans items-center" maw={1400} m="auto" style={{ position: 'relative', overflowX: 'hidden' }}>
+    <Box 
+      className="font-sans items-center" 
+      style={{ 
+        position: 'relative',
+        height: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        width: '100%'
+      }}
+    >
       <Navbar openAI={open} />
 
-      <Flex style={{ gridTemplateColumns: "1fr 1fr"}}>
-          <Hero form={form} handleSubmit={async () => handleSubmit(form.getValues().query)} openDrawer={open}/>
-      </Flex>
+      <Box
+        style={{ 
+          flex: 1,
+          width: '100%'
+        }}
+      >
+        <Hero form={form} handleSubmit={async () => handleSubmit(form.getValues().query)} openDrawer={open}/>
+      </Box>
 
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
+      <footer className="row-start-3 gap-[24px] flex-wrap items-center justify-center hidden md:flex">
 
       </footer>
 
-      {/* Floating AI Button for all screens */}
+      {/* Floating AI Button for mobile screens only */}
       {!opened && (
         <Box
+          className="block md:hidden"
           style={{
             position: 'fixed',
             bottom: '20px',

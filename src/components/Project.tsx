@@ -1,5 +1,5 @@
 
-import { logos } from './IconPill.jsx'
+import { logos } from '@/lib/icons'
 import { motion } from 'motion/react'
 import { useState } from 'react'
 import {Anchor, Avatar, Button, Flex, Image, Paper, Text, Title, Tooltip, UnstyledButton} from '@mantine/core'

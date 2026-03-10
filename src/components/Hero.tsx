@@ -7,7 +7,7 @@ import {Anchor, Box, Button, Flex, Image, Text, TextInput, Title} from '@mantine
 import {SimpleTestimonials} from "@/components/ui/simple-testimonials";
 import { heroImages } from "@/data/data";
 import {IoIosSend} from "react-icons/io";
-import {HeroForm} from "@/sections/chatbot/HeroForm";
+import {HeroForm} from "@/components/chatbot/HeroForm";
 const emailAddress = "sujith.varug@gmail.com"
 
 type HeroProps = {
@@ -46,8 +46,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
 
 
   return (
-    <Box 
-      className="w-full"
+    <Box
       style={{ 
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
@@ -55,8 +54,14 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
         overflowX: 'hidden'
       }}
     >
-              <Flex direction={{ base: "column", md: "row" }} align="center" justify="center" style={{ minHeight: 'calc(100vh - 80px)' }} p={{ base: "md", md: "xl" }}>
-        <Flex className="flex flex-col items-center justify-center w-full h-full" style={{ maxWidth: '100%' }}>
+      <Box 
+        style={{ 
+          maxWidth: '1400px',
+          margin: '0 auto'
+        }}
+      >
+        <Flex direction={{ base: "column", md: "row" }} align="center" justify="center" style={{ minHeight: 'calc(100vh - 80px)' }} p={{ base: "md", md: "xl" }}>
+          <Flex className="flex flex-col items-center justify-center w-full h-full" style={{ maxWidth: '100%' }}>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -74,7 +79,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto max-w-xl py-4 text-center text-lg font-normal text-white"
+            className="mx-auto py-4 text-center text-lg font-normal text-white"
           >
             <TypewriterText text={bio} delay={800} />
           </motion.p>
@@ -85,7 +90,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
             transition={{ duration: 0.5, delay: 0.4 }}
           >
             <Flex justify="center" align="center">
-              <div className="mx-auto max-w-xl py-4 text-center text-lg font-normal text-white">
+              <div className="mx-auto py-4 text-center text-lg font-normal text-white">
                 <IoLocationSharp fontSize={28} color="white"/>
               </div>
               <p style={{ color: "white"}}>
@@ -98,7 +103,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-8 flex flex-wrap items-center justify-center gap-4"
+            className="mt-4 md:mt-8 flex flex-wrap items-center justify-center gap-2 md:gap-4"
           >
             <HeroForm form={form} handleSubmit={handleSubmit} openDrawer={openDrawer} />
 
@@ -148,10 +153,9 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
           <SimpleTestimonials testimonials={heroImages} />
         </motion.div>
       </Flex>
+      </Box>
     </Box>
   )
 }
 
 export default Hero
-
-

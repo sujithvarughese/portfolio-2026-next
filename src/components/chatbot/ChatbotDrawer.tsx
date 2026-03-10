@@ -2,8 +2,8 @@
 import {Drawer, Button, Title, Flex, Box, TextInput} from '@mantine/core';
 import {useAppSelector} from "@/lib/hooks";
 import {useEffect, useRef} from "react";
-import Message from "@/sections/chatbot/Message";
-import LoadingMessage from "@/sections/chatbot/LoadingMessage";
+import Message from "@/components/chatbot/Message";
+import LoadingMessage from "@/components/chatbot/LoadingMessage";
 import {IoIosSend} from "react-icons/io";
 import { RiAiGenerate2 } from "react-icons/ri";
 import { UseFormReturnType } from '@mantine/form';
@@ -36,6 +36,23 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
       bottomRef.current!.scrollIntoView({ behavior: "smooth" });
     }
   }, [chat]);
+
+  // Hide main page scrollbar and prevent scrolling when chatbot drawer is open
+  useEffect(() => {
+    if (opened) {
+      document.documentElement.style.overflow = 'hidden';
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }
+
+    // Cleanup on unmount
+    return () => {
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    };
+  }, [opened]);
 
   return (
       <Drawer
