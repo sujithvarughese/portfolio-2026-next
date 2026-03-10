@@ -1,7 +1,12 @@
 import { Avatar, Box, Paper, Text } from '@mantine/core'
 import * as React from 'react'
 
-const Message = ({ sender, message }) => {
+interface MessageProps {
+  sender: 'user' | 'assistant' | 'chatbot';
+  message: string;
+}
+
+const Message = ({ sender, message }: MessageProps) => {
   return (
     <Box pos="relative">
       <Paper

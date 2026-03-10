@@ -6,17 +6,27 @@ import Message from "@/sections/chatbot/Message";
 import LoadingMessage from "@/sections/chatbot/LoadingMessage";
 import {IoIosSend} from "react-icons/io";
 import { RiAiGenerate2 } from "react-icons/ri";
+import { UseFormReturnType } from '@mantine/form';
+
+interface FormValues {
+  query: string;
+}
+
+interface ChatMessage {
+  sender: 'user' | 'assistant' | 'chatbot';
+  message: string;
+}
 
 type ChatbotProps = {
   opened: boolean;
   close: () => void;
-  form: any;
+  form: UseFormReturnType<FormValues>;
   handleSubmit: (query: string) => void;
 };
 
 export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProps) {
 
-  const chat = useAppSelector(state => state.assistant.chat)
+  const chat = useAppSelector(state => state.assistant.chat) as ChatMessage[]
   const loading = useAppSelector(state => state.assistant.loading)
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
@@ -68,7 +78,7 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
             {chat?.map((message, index) => <Message key={index} {...message} />)}
             {loading && <LoadingMessage />}
           </Box>
-          <form onSubmit={form.onSubmit(values => handleSubmit(values.query))}>
+          <form onSubmit={form.onSubmit((values: FormValues) => handleSubmit(values.query))}>
             <Flex direction="column" gap={20}>
               <Box mx={12}>
                 <TextInput

@@ -16,12 +16,14 @@ const ChatbotButton = ({ open }: ChatbotButtonProps) => {
     open()
   }
 
+
   return (
     <Box
       component={motion.div}
       initial={{ scale: 1 }}
       whileHover={{ scale: 1.05 }}
       animate={clicked ?  {} : { scale: [1, 1.1, 1] }} // Flash effect
+      // @ts-ignore
       transition={ clicked ? { ease: "easeInOut" } :{
         duration: 0.5, // Speed of flashing
         repeat: Infinity, // Loop forever

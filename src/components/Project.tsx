@@ -7,6 +7,23 @@ import { useDisclosure } from '@mantine/hooks'
 import { LiaGithub, LiaRocketSolid } from "react-icons/lia";
 import { FaAppStore } from "react-icons/fa";
 
+interface ProjectProps {
+  title: string;
+  heading: string;
+  description: string;
+  coverImage: string;
+  coverGif: string;
+  link?: string;
+  isMobile?: boolean;
+  github: string;
+  appStore?: string;
+  captions: string[];
+  images: string[];
+  tech: string[];
+  featured?: boolean;
+}
+
+
 const cardVariants = {
   offscreen: {
     y: 100,
@@ -41,18 +58,20 @@ const Project = ({
   images,
   tech,
   featured
-}) => {
+}: ProjectProps) => {
 
   const [mobileAlertOpened, { open: openMobileAlert, close: closeMobileAlert }] = useDisclosure(false);
   const [projectOpened, { open: openProject, close: closeProject }] = useDisclosure(false);
   const [isHovering, setIsHovering] = useState(false)
 
+  // @ts-ignore
   return (
     <>
       <UnstyledButton
         component={motion.div}
         onClick={openProject}
         initial={cardVariants.offscreen}
+        // @ts-ignore - Framer Motion props with Mantine components
         whileInView={cardVariants.onscreen}
         viewport={cardVariants.viewport}
         whileHover={{ scale: 1.05 }}
@@ -115,6 +134,7 @@ const Project = ({
               {appStore &&
               <Button
                 component={Anchor}
+                // @ts-ignore - Button component is Anchor
                 href={appStore}
                 variant="light" size="lg"
                 target="_blank"

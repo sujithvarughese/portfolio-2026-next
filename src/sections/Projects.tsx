@@ -3,6 +3,7 @@ import {Timeline} from "@/components/ui/timeline";
 
 const Projects = () => {
   return (
+    // @ts-ignore
     <Timeline data={projects} />
   )
 }
