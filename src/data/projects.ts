@@ -20,7 +20,7 @@ export const projects = [
 		link: 'https://authentime.vercel.app',
 		github: 'https://github.com/sujithvarughese/watch-app',
 		appStore: 'https://apps.apple.com/us/app/authentime/id6746581706',
-		tech: ["TypeScript", "NextJS", "OpenAI", "React", "Mantine UI", "HTML", "CSS"],
+		tech: ["TypeScript", "NextJS", "Expo", "OpenAI", "React", "Mantine UI", "API Integration", "CI/CD", "Testing", "HTML", "CSS"],
 		featured: true,
 		isMobile: false,
 		width: "50%",
@@ -46,7 +46,7 @@ export const projects = [
 		link: '',
 		github: 'https://github.com/sujithvarughese/modulo',
 		appStore: 'https://apps.apple.com/us/app/modulo-ai/id6743953454',
-		tech: ["TypeScript", "NodeJS", "React", "MongoDB", "Mantine UI", "HTML", "CSS"],
+		tech: ["TypeScript", "NodeJS", "Expo", "React", "MongoDB", "Mantine UI", "API Integration", "CI/CD", "Testing", "HTML", "CSS"],
 		featured: true,
 		isMobile: false,
 		width: "50%"

@@ -8,6 +8,7 @@ import {
 import { useEffect, useRef, useState } from "react";
 import { Badge, Box, Card, Flex, Text, Title } from "@mantine/core";
 import { ExperienceEntry } from "@/data/experience";
+import { logos } from "@/lib/icons"
 
 export const WorkTimeline = ({ data }: { data: ExperienceEntry[] }) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -127,6 +128,7 @@ export const WorkTimeline = ({ data }: { data: ExperienceEntry[] }) => {
                             gradient={{ from: 'blue', to: 'purple' }}
                             size="lg"
                             radius="md"
+                            leftSection={logos[skill]}
                           >
                             {skill}
                           </Badge>

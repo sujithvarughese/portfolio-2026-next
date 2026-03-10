@@ -7,7 +7,7 @@ import {
 } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { Badge, Box, Card, Flex, Image, Text, Title, Button, Avatar, Tooltip } from "@mantine/core";
-import { logos } from '../IconPill'
+import { logos } from '@/lib/icons'
 import {LiaGithub, LiaRocketSolid} from "react-icons/lia";
 import {FaAppStore} from "react-icons/fa";
 
@@ -145,6 +145,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                               gradient={{ from: 'blue', to: 'purple' }}
                               size="lg"
                               radius="md"
+                              leftSection={logos[tech]}
                             >
                               {tech}
                             </Badge>
