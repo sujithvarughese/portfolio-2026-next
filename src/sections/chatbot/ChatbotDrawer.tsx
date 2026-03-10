@@ -1,0 +1,97 @@
+"use client"
+import {Drawer, Button, Title, Flex, Box, TextInput} from '@mantine/core';
+import {useAppSelector} from "@/lib/hooks";
+import {useEffect, useRef} from "react";
+import Message from "@/sections/chatbot/Message";
+import LoadingMessage from "@/sections/chatbot/LoadingMessage";
+import {IoIosSend} from "react-icons/io";
+import { RiAiGenerate2 } from "react-icons/ri";
+
+type ChatbotProps = {
+  opened: boolean;
+  close: () => void;
+  form: any;
+  handleSubmit: () => void;
+};
+
+export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProps) {
+
+  const chat = useAppSelector(state => state.assistant.chat)
+  const loading = useAppSelector(state => state.assistant.loading)
+
+  const bottomRef = useRef<HTMLDivElement | null>(null);
+
+  useEffect(() => {
+    if (bottomRef?.current) {
+      bottomRef.current!.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [chat]);
+
+  return (
+      <Drawer
+        opened={opened}
+        onClose={close}
+        title={
+          <Flex align="center" gap={8}>
+            <Box
+              style={{
+                background: 'linear-gradient(135deg, #FF8A00, #FF6B00)',
+                borderRadius: '50%',
+                padding: '6px',
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center'
+              }}
+            >
+              <RiAiGenerate2 size={18} color="white" />
+            </Box>
+            <Title
+              order={3}
+              style={{
+                background: 'linear-gradient(135deg, #228be6, #339af0)',
+                backgroundClip: 'text',
+                WebkitBackgroundClip: 'text',
+                color: 'transparent',
+                fontWeight: 600,
+                fontSize: '1.25rem'
+              }}
+            >
+              AI Assistant
+            </Title>
+          </Flex>
+        }
+        position="right"
+        overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
+      >
+        <Flex direction="column" gap={20}>
+          <Box>
+            {chat?.map((message, index) => <Message key={index} {...message} />)}
+            {loading && <LoadingMessage />}
+          </Box>
+          <form onSubmit={form.onSubmit(values => handleSubmit(values.query))}>
+            <Flex direction="column" gap={20}>
+              <Box mx={12}>
+                <TextInput
+                  data-autofocus
+                  placeholder="Create Message"
+                  key={form.key('query')}
+                  {...form.getInputProps('query')}
+                />
+              </Box>
+
+              <Flex justify="flex-end" mx={12} ref={bottomRef}>
+                <Button
+                  type="submit"
+                  loading={loading}
+                  variant="gradient"
+                  loaderProps={{ type: 'dots' }}
+                  rightSection={<IoIosSend size={20}/>}
+                >Send
+                </Button>
+              </Flex>
+            </Flex>
+          </form>
+        </Flex>
+      </Drawer>
+  );
+}

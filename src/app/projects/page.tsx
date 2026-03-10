@@ -1,17 +1,15 @@
 "use client"
-import Hero from "@/sections/Hero";
 import { useForm } from '@mantine/form';
 import { addMessageToChat, fetchAiStream } from "@/lib/features/chatbot/chatbotSlice";
 import { useDisclosure } from "@mantine/hooks";
 import { useAppDispatch } from "@/lib/hooks";
 import { Navbar } from "@/sections/Navbar";
+import Projects from "@/sections/Projects";
 import { ChatbotDrawer } from "@/sections/chatbot/ChatbotDrawer";
 import ChatbotButton from "@/sections/chatbot/ChatbotButton";
 import { Box, Flex } from "@mantine/core";
 
-
-export default function Home() {
-
+export default function ProjectsPage() {
   const [opened, { open, close }] = useDisclosure(false);
   const dispatch = useAppDispatch()
 
@@ -34,18 +32,35 @@ export default function Home() {
     form.reset()
   }
 
-
   return (
-    <Box className="font-sans items-center" maw={1400} m="auto" style={{ position: 'relative', overflowX: 'hidden' }}>
+    <Box 
+      className="font-sans items-center" 
+      maw={1400} 
+      m="auto" 
+      style={{ 
+        position: 'relative',
+        minHeight: '100vh',
+        background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
+        paddingTop: '80px'
+      }}
+    >
       <Navbar openAI={open} />
 
-      <Flex style={{ gridTemplateColumns: "1fr 1fr"}}>
-          <Hero form={form} handleSubmit={async () => handleSubmit(form.getValues().query)} openDrawer={open}/>
+      <Flex justify="center" align="center" style={{ minHeight: 'calc(100vh - 80px)', padding: '20px' }}>
+        <Box
+          style={{
+            backgroundColor: 'rgba(255, 255, 255, 0.95)',
+            borderRadius: '16px',
+            padding: '40px',
+            maxWidth: '95%',
+            width: '100%',
+            boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
+            backdropFilter: 'blur(10px)'
+          }}
+        >
+          <Projects />
+        </Box>
       </Flex>
-
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-
-      </footer>
 
       {/* Floating AI Button for all screens */}
       {!opened && (

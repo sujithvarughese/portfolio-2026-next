@@ -41,24 +41,25 @@ export const fetchAiStream = createAsyncThunk('chatbot/fetchAiStream', async (qu
       method: "POST",
       headers: {
         "Content-Type": "application/json",
-        "Authorization": `Bearer ${process.env.OPEN_AI_KEY}`,
       },
       body: JSON.stringify({ query }),
-      next: { revalidate: 0 }
     });
-    if (!response) {
-      console.log("No response")
-      return
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! status: ${response.status}`);
     }
+
     const reader = response.body?.getReader();
     const decoder = new TextDecoder();
+
     let result = '';
     while (true) {
       const { done, value } = await reader!.read();
       if (done) break;
+
       const chunkStr = decoder.decode(value);
       chunkStr.split("\n").forEach(line => {
-        if (line.startsWith("data")) {
+        if (line.startsWith("data:")) {
           try {
             const data = JSON.parse(line.replace("data: ", ""));
             if (data.delta) {
@@ -77,7 +78,7 @@ export const fetchAiStream = createAsyncThunk('chatbot/fetchAiStream', async (qu
     }
   } catch (error) {
     console.error('Error:', error);
-    return NextResponse.json({ error: 'An error occurred on the client.' })
+    throw error; // This will trigger the rejected case
   }
 })
 
