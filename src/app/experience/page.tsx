@@ -35,8 +35,8 @@ export default function ExperiencePage() {
 
   return (
     <Box 
-      className="font-sans items-center" 
-      style={{ 
+      className="font-sans items-center"
+      style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
         paddingTop: '80px'
@@ -51,10 +51,10 @@ export default function ExperiencePage() {
       >
         <Flex justify="center" align="center" style={{ minHeight: 'calc(100vh - 80px)', padding: '20px' }}>
           <Box
+            p={{ base: 4, sm: 40}}
             style={{
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               borderRadius: '16px',
-              padding: '40px',
               maxWidth: '95%',
               width: '100%',
               boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
@@ -69,7 +69,7 @@ export default function ExperiencePage() {
         {!opened && (
           <Box
             style={{
-              position: 'absolute',
+              position: 'fixed',
               bottom: '20px',
               right: '20px',
               zIndex: 1000

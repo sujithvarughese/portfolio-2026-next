@@ -50,10 +50,10 @@ export default function ProjectsPage() {
       >
         <Flex justify="center" align="center" style={{ minHeight: 'calc(100vh - 80px)', padding: '20px' }}>
           <Box
+            p={{ base: 4, sm: 40}}
             style={{
               backgroundColor: 'rgba(255, 255, 255, 0.95)',
               borderRadius: '16px',
-              padding: '40px',
               maxWidth: '95%',
               width: '100%',
               boxShadow: '0 10px 30px rgba(0, 0, 0, 0.2)',
@@ -68,7 +68,7 @@ export default function ProjectsPage() {
         {!opened && (
           <Box
             style={{
-              position: 'absolute',
+              position: 'fixed',
               bottom: '20px',
               right: '20px',
               zIndex: 1000

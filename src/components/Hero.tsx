@@ -60,7 +60,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
           margin: '0 auto'
         }}
       >
-        <Flex direction={{ base: "column", md: "row" }} align="center" justify="center" style={{ minHeight: 'calc(100vh - 80px)' }} p={{ base: "md", md: "xl" }}>
+        <Flex direction={{ base: "column", md: "row" }} align="center" justify="center" style={{ minHeight: 'calc(100vh - 80px)' }} p={{ base: "sm", md: "xl" }}>
           <Flex className="flex flex-col items-center justify-center w-full h-full" style={{ maxWidth: '100%' }}>
           <motion.h1
             initial={{ opacity: 0, y: 20 }}
@@ -70,7 +70,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
               ease: "easeInOut",
               delay: 0,
             }}
-            className="mt-8 bg-gradient-to-br from-white to-gray-200 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+            className="md:mt-8 bg-gradient-to-br from-white to-gray-200 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
           >
             {fullName}
           </motion.h1>
@@ -79,7 +79,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.2 }}
-            className="mx-auto py-4 text-center text-lg font-normal text-white"
+            className="mx-auto md:py-4 text-center text-lg font-normal text-white"
           >
             <TypewriterText text={bio} delay={800} />
           </motion.p>
@@ -103,7 +103,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.7, delay: 0.6 }}
-            className="mt-4 md:mt-8 flex flex-wrap items-center justify-center gap-2 md:gap-4"
+            className="mt-2 md:mt-8 flex flex-wrap items-center justify-center gap-2 md:gap-4"
           >
             <HeroForm form={form} handleSubmit={handleSubmit} openDrawer={openDrawer} />
 
