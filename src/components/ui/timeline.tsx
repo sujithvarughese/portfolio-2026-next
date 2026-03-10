@@ -6,7 +6,8 @@ import {
   motion,
 } from "motion/react";
 import { useEffect, useRef, useState } from "react";
-import { Badge, Box, Card, Flex, Image, Text, Title, Button, Avatar, Tooltip } from "@mantine/core";
+import { Badge, Box, Card, Flex, Text, Title, Button, Avatar, Tooltip } from "@mantine/core";
+import Image from "next/image";
 import { logos } from '@/lib/icons'
 import {LiaGithub, LiaRocketSolid} from "react-icons/lia";
 import {FaAppStore} from "react-icons/fa";
@@ -118,8 +119,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                             <Image
                               src={image}
                               alt={`${item.title} screenshot`}
-                              radius="md"
-                              className="h-32 md:h-48 w-full object-cover border border-neutral-200 dark:border-neutral-700"
+                              width={800}
+                              height={800}
+                              className="h-32 md:h-48 w-full rounded-xl object-cover border border-neutral-200 dark:border-neutral-700"
                             />
                           </motion.div>
                         ))}

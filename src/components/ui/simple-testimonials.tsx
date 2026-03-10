@@ -2,7 +2,7 @@
 
 import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
 import { useState } from "react";
-import { Image } from "@mantine/core";
+import Image from "next/image";
 
 type Testimonial = {
   quote: string;
@@ -50,11 +50,11 @@ export const SimpleTestimonials = ({
                 onClick={() => setActive(index)}
               >
                 <Image
+                  fill
                   src={testimonial.src}
                   alt={testimonial.quote}
                   draggable={false}
                   className="h-full w-full rounded-2xl object-cover object-center shadow-lg"
-                  style={{ borderRadius: '16px' }}
                 />
               </div>
             );

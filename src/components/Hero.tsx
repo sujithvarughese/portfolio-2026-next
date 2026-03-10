@@ -133,7 +133,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                 >
                   <Box>
                     <Flex direction="column">
-                      <Anchor href="/varughese_resume.pdf" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>Resumé</Anchor>
+                      <Anchor href="/resume" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>Resumé</Anchor>
                       <Anchor href="https://www.linkedin.com/in/sujithvarughese/" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>LinkedIn</Anchor>
                       <Anchor href="http://github.com/sujithvarughese" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>GitHub</Anchor>
                     </Flex>
