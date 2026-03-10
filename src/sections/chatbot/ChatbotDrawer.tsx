@@ -11,7 +11,7 @@ type ChatbotProps = {
   opened: boolean;
   close: () => void;
   form: any;
-  handleSubmit: () => void;
+  handleSubmit: (query: string) => void;
 };
 
 export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProps) {
