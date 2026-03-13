@@ -18,18 +18,18 @@ export const emailAddress = "sujith.varug@gmail.com"
 export const heroImages = [
   {
     src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718384/profile_wyz7ae.jpg",
-    quote: "Building bridges between ideas and execution by delivering software that’s tested, reliable, and ready to scale."
+    quote: "Transforming complex ideas into scalable platforms and intelligent systems that power real-world applications."
   },
   {
     src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718379/hera_sbp9lo.jpg",
-    quote: "Proficient in both functional and object-oriented programming: JavaScript, TypeScript, Python, Java, and C++."
+    quote: "Modern software engineering is about combining strong architecture, cloud infrastructure, and AI-driven engineering workflows to build powerful, scalable products."
   },
   {
     src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1756333768/IMG_3300_kqo8vq.jpg",
-    quote: "Four years of experience in React, React Native, NextJS, HTML, CSS, NodeJS, Express, SQL, MongoDB, and Docker."
+    quote: "Good code solves a problem. Great systems prevent problems from happening in the first place."
   },
   {
     src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1756334025/profile-small-1_natntd_kfbibb.png",
-    quote: "Experienced in the software developmental life cycle, network configuration, AWS, Google Cloud, and app store publishing."
+    quote: "The best developers today combine deep technical fundamentals with the ability to leverage AI to move faster."
   },
 ]
