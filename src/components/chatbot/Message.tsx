@@ -2,6 +2,7 @@
 import { Box, Text } from '@mantine/core'
 import { RiAiGenerate2 } from "react-icons/ri";
 import { FaUser } from "react-icons/fa";
+import ReactMarkdown from 'react-markdown';
 
 interface MessageProps {
   sender: 'user' | 'assistant' | 'chatbot';
@@ -60,10 +61,10 @@ const Message = ({ sender, message }: MessageProps) => {
             color: '#333',
             lineHeight: 1.5,
             fontSize: '0.95rem',
-            whiteSpace: 'pre-wrap',
           }}
+          className="prose prose-sm max-w-none"
         >
-          {message}
+          <ReactMarkdown>{message}</ReactMarkdown>
         </Text>
       </Box>
     </Box>

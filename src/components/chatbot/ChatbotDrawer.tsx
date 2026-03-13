@@ -95,6 +95,7 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
             {chat?.map((message, index) => <Message key={index} {...message} />)}
             {loading && <LoadingMessage />}
           </Box>
+          <Suggestions onSelect={handleSubmit} />
           <form onSubmit={form.onSubmit((values: FormValues) => handleSubmit(values.query))}>
             <Flex direction="column" gap={20}>
               <Box mx={12}>
@@ -122,3 +123,41 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
       </Drawer>
   );
 }
+
+const Suggestions = ({ onSelect }) => {
+  return (
+    <div style={{
+      display: "flex",
+      flexWrap: "wrap",
+      gap: "8px",
+      marginTop: "10px"
+    }}>
+      {suggestedQuestions.map((q) => (
+        <button
+          key={q}
+          onClick={() => onSelect(q)}
+          style={{
+            padding: "6px 12px",
+            borderRadius: "20px",
+            border: "1px solid #ddd",
+            background: "#f7f7f7",
+            cursor: "pointer",
+            fontSize: "13px"
+          }}
+        >
+          {q}
+        </button>
+      ))}
+    </div>
+  );
+}
+
+const suggestedQuestions = [
+  "Tell me about Sujith",
+  "What tech stack does he use?",
+  "What did he build at AllClear?",
+  "What AI projects has he built?",
+  "What are some of his recent projects?",
+  "Does Sujith have SaaS experience?",
+  "Is Sujith open to work?"
+];
