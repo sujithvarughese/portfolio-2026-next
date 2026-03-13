@@ -134,7 +134,7 @@ export const projects = [
 		coverImage: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718339/cover_h9485g.jpg",
 		coverGif: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718334/cover_pl9n5c.gif",
 		heading: "Challenge Your Knowledge, while getting AI-powered explanations to learn the \"why\" behind every answer!",
-		description: "Test your knowledge and challenge your friends with fun and engaging trivia questions across a variety of topics, with detailed explanations for the answers!\n\n",
+		description: "Test your knowledge and challenge your friends with fun and engaging trivia questions across a variety of topics, with detailed explanations for the answers!",
 		captions: [
 			"Utilizes Redux Toolkit for efficient state management and score tracking.",
 			"Features thousands of questions across customized categories using the Open Trivia Database.",

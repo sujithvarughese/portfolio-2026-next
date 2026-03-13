@@ -59,7 +59,8 @@ const Message = ({ sender, message }: MessageProps) => {
           style={{
             color: '#333',
             lineHeight: 1.5,
-            fontSize: '0.95rem'
+            fontSize: '0.95rem',
+            whiteSpace: 'pre-wrap',
           }}
         >
           {message}

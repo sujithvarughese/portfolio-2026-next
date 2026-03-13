@@ -1,7 +1,17 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
-import {NextResponse} from "next/server";
+import {createAsyncThunk, createSlice, PayloadAction} from "@reduxjs/toolkit";
 
-const initialState = {
+type ChatMessage = {
+  sender: "chatbot" | "user";
+  message: string;
+};
+
+type ChatState = {
+  loading: boolean;
+  chat: ChatMessage[];
+};
+
+
+const initialState: ChatState = {
   loading: false,
   chat: [{
     sender: "chatbot",
@@ -13,9 +23,9 @@ const chatbotSlice = createSlice({
   name: "assistant",
   initialState,
   reducers: {
-    addMessageToChat: (state, action) => {
+    addMessageToChat: (state, action: PayloadAction<{ sender: "chatbot" | "user"; message: string }>) => {
       state.loading = false
-      state.chat.push({ sender: action.payload.sender, message: action.payload.message })
+      state.chat.push(action.payload)
     },
     addAiStream: (state, action) => {
       state.chat[state.chat.length - 1].message += action.payload
@@ -52,29 +62,40 @@ export const fetchAiStream = createAsyncThunk('chatbot/fetchAiStream', async (qu
     const reader = response.body?.getReader();
     const decoder = new TextDecoder();
 
-    let result = '';
+    // create empty bot message immediately
+    thunkAPI.dispatch(addMessageToChat({ sender: "chatbot", message: "" }))
+
+    let buffer = '';
+
     while (true) {
       const { done, value } = await reader!.read();
       if (done) break;
 
-      const chunkStr = decoder.decode(value);
+      const chunkStr = decoder.decode(value, { stream: true });
+
       chunkStr.split("\n").forEach(line => {
         if (line.startsWith("data:")) {
           try {
             const data = JSON.parse(line.replace("data: ", ""));
             if (data.delta) {
-              if (!result) {
-                thunkAPI.dispatch(addMessageToChat({ sender: "chatbot", message: result }))
-              }
-              result += data.delta
-              thunkAPI.dispatch(addAiStream(data.delta))
+              buffer += data.delta;
             }
           } catch (error) {
-            console.error('Error:', error);
-            return NextResponse.json({ error: 'An error occurred while streaming response.' })
+            console.error('Error while parsing stream:', error);
           }
         }
       });
+
+      // dispatch buffered text in bigger chunks
+      if (buffer) {
+        thunkAPI.dispatch(addAiStream(buffer));
+        buffer = '';
+      }
+    }
+
+    // flush any remaining text
+    if (buffer) {
+      thunkAPI.dispatch(addAiStream(buffer));
     }
   } catch (error) {
     console.error('Error:', error);

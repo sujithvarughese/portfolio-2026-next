@@ -1,6 +1,9 @@
 import OpenAI from 'openai';
 import { NextResponse } from 'next/server';
 
+export const dynamic = 'force-dynamic';
+export const runtime = 'nodejs';
+
 const openai = new OpenAI({
   apiKey: process.env.OPENAI_API_KEY,
 });
@@ -23,48 +26,43 @@ export async function POST(request: Request) {
       );
     }
 
-    const response = await openai.responses.create({
+    const openaiStream = openai.responses.stream({
       model: 'gpt-4.1-mini',
       instructions: process.env.OPENAI_PROMPT,
       tools: [
         {
           type: 'file_search',
           vector_store_ids: [process.env.VECTOR_STORE_ID],
-          max_num_results: 10,
+          max_num_results: 2,
         },
       ],
       input: query,
     });
     // Create a streaming response
     const encoder = new TextEncoder();
-    const stream = new ReadableStream({
-      start(controller) {
-        // Split the response into chunks for streaming effect
-        const words = response.output_text.split(' ');
-        let currentChunk = '';
 
-        const sendChunk = (index: number) => {
-          if (index >= words.length) {
-            controller.close();
-            return;
+    const stream = new ReadableStream({
+      async start(controller) {
+        try {
+          for await (const event of openaiStream) {
+            if (event.type === 'response.output_text.delta') {
+              const data = JSON.stringify({ delta: event.delta });
+              controller.enqueue(encoder.encode(`data: ${data}\n\n`));
+            }
           }
 
-          currentChunk = words[index] + ' ';
-          const data = JSON.stringify({ delta: currentChunk });
-          controller.enqueue(encoder.encode(`data: ${data}\n\n`));
-
-          // Add a small delay to simulate streaming
-          setTimeout(() => sendChunk(index + 1), 50);
-        };
-
-        sendChunk(0);
+          controller.close();
+        } catch (error) {
+          console.error('Streaming error:', error);
+          controller.error(error);
+        }
       },
     });
 
     return new Response(stream, {
       headers: {
         'Content-Type': 'text/event-stream',
-        'Cache-Control': 'no-cache',
+        'Cache-Control': 'no-cache, no-transform',
         'Connection': 'keep-alive',
       },
     });
