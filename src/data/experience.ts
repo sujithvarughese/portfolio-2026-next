@@ -16,11 +16,14 @@ export const experienceData: ExperienceEntry[] = [
     location: "Davie, FL",
     description: "Specialized in building and maintaining a comprehensive multi-tenant SaaS platform, working with diverse clients to deliver scalable solutions, including Debt.com and several enterprise partners.",
     achievements: [
-      "Built and shipped key product features for a multi-tenant SaaS platform supporting 50k+ monthly active user across Debt.com and multiple enterprise partners, delivering configuration-driven workflows in React, TypeScript, NestJS, and Firebase/Firestore.",
-      "Developed and maintained serverless backend services on Google Cloud Platform, handling thousands of daily profile creations and updates with sub-second p95 response times using Cloud Functions and Firestore.",
-      "Slashed production incidents and debugging time by ~50% through implementing structured logging and request traceability via Google Cloud Logging, facilitating faster root-cause analysis across frontend, backend, and database layers.",
+      "Delivered production features for a multi-tenant SaaS platform powering Debt.com and enterprise debt-relief partners in the consumer fintech space, serving 50,000+ monthly users, using React, TypeScript, NestJS, and Firebase.",
+      "Designed the platform’s multi-tenant Firestore architecture, introducing a multi-database structure that isolates data per organization while enabling scalable configuration-driven workflows across enterprise partners.",
+      "Built an LLM-powered chatbot using the OpenAI API that converts natural-language prompts into executable decision-flow logic for an internal decision engine used by Debt.com and partner organizations to evaluate debt-relief program eligibility, enabling non-engineering teams to rapidly author and visualize complex financial eligibility rules.",
+      "Designed and implemented serverless backend services on Google Cloud Platform, processing thousands of daily financial transactions with sub-second p95 latency using Cloud Functions and Firestore.",
+      "Led redesign of Debt.com’s customer offer confirmation experience, replacing fragmented UI screens with a reusable React component architecture and unified layout system implemented from Zeplin specs that improved maintainability and eliminated duplicated rendering logic across multiple partner configurations.",
+      "Implemented electronic signature integration for customer agreements using Server-Sent Events to track document readiness and signature status, enabling thousands of contract completions daily across partner onboarding flows.",
+      "Improved system observability and debugging efficiency by implementing structured logging and request traceability via Google Cloud Logging, reducing production incidents and debugging time by 50% across frontend, backend, and database layers.",
       "Contributed to core user-facing workflows, including secure login and access controls, in a high-trust financial domain, ensuring correctness and stability across onboarding and partner-facing flows.",
-      "Collaborated across product, design, QA, and engineering leadership, translating Zeplin designs into production-ready UI while effectively communicating technical decisions to non-technical stakeholders.",
       "Coordinated work using Jira, Git, CI/CD pipelines, and Miro boards, while using AI-assisted tools (GitHub Copilot, Cursor) to accelerate development and maintain release stability in a fast-moving environment."
     ],
     skills: ["TypeScript", "React", "React Native", "NodeJS", "NestJS", "Google Cloud", "Google Analytics", "Firebase", "OpenAI", "API Integration", "Jira", "Scrum", "Testing", "Git", "CI/CD", "Miro", "Postman", "GitHub Copilot", "Material UI", "HTML", "CSS", "Tailwind CSS"]
@@ -32,9 +35,9 @@ export const experienceData: ExperienceEntry[] = [
     location: "Hollywood, FL",
     description: "Designed and built a custom property management application from concept to deployment to track rental finances, manage property data, and integrate real estate APIs for market insights and operational analytics.",
     achievements: [
-      "Led a cross-functional team to design and deliver a proprietary property management platform supporting 100+ rental units while collaborating directly with investors to translate business objectives into scalable backend services and frontend workflows and driving adoption through structured onboarding that reduced manual management effort by ~40%.",
-      "Integrated multiple REST APIs and services, ensuring reliable synchronization of real-time property listings and comprehensive rental market data, along with Stripe API for secure online rent payments resulting in increased tenant and management satisfaction and a 150% increase in lease renewal rates.",
-      "Developed back-end architecture utilizing NodeJS, MongoDB for data, and AWS S3 for scalable file management, and OAuth 2.0, Firebase, and JSON Web Tokens (JWT) for secure user authentication and role-based access control.",
+      "Led development of a proprietary property management platform supporting 100+ rental units, collaborating directly with investors to translate business objectives into scalable services and reducing manual management workload by 40% through automation and structured onboarding.",
+      "Integrated REST APIs for real-time property listings and rental market data, along with Stripe Payments API for secure online payments resulting in increased tenant and management satisfaction and a 150% increase in lease renewal rates.",
+      "Designed backend architecture using Node.js, MongoDB, AWS S3, implementing OAuth 2.0, Firebase Auth, and JSON Web Tokens (JWT) for secure authentication and role-based access control while supporting stable, uninterrupted operations.",
       "Optimized front-end state management with component-based development using ReactJS with Redux Toolkit and useMemo/useCallback for scalable UI architecture and utilizing custom hooks, reducing load times by 50%.",
     ],
     skills: ["JavaScript", "React", "React Native", "NodeJS", "MongoDB", "Expo", "AWS", "HTML", "CSS", "API Integration", "Mantine UI", "Postman", "Testing", "Git", "CI/CD", "Deployment", "DNS & Networks", "HTML", "CSS"]
