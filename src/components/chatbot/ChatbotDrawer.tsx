@@ -28,6 +28,7 @@ type ChatbotProps = {
 export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProps) {
 
   const [inputValue, setInputValue] = useState("");
+  const isLoading = useAppSelector(state => state.assistant.loading)
   const chat = useAppSelector(state => state.assistant.chat) as ChatMessage[]
   const loading = useAppSelector(state => state.assistant.loading)
 
@@ -66,7 +67,7 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
         clearTimeout(timeout2);
       };
     }
-  }, [opened]);
+  }, [opened, isLoading]);
 
   // Hide main page scrollbar and prevent scrolling when chatbot drawer is open
   useEffect(() => {
@@ -137,7 +138,7 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
             </Flex>
 
         </Flex>
-        <div ref={bottomRef} style={{ height: loading ? '200px' : '20px' }}/>
+        <div ref={bottomRef} style={{ height: '16px' }}/>
       </Drawer>
   );
 }
