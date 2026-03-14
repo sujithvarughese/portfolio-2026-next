@@ -8,7 +8,7 @@ const LoadingMessage = () => {
       style={{
         display: 'flex',
         flexDirection: 'row',
-        alignItems: 'flex-start',
+        alignItems: 'flex-end',
         gap: '12px',
         margin: '16px 0',
         padding: '0 12px'
@@ -30,18 +30,21 @@ const LoadingMessage = () => {
       </Box>
 
       <Box
+        className="bubble-assistant"
         style={{
           background: 'linear-gradient(135deg, #fff3e0, #ffe0b2)',
-          borderRadius: '16px',
+          borderRadius: '18px 18px 18px 4px',
           padding: '12px 16px',
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           border: '1px solid rgba(255, 138, 0, 0.2)',
           display: 'flex',
           alignItems: 'center',
-          gap: '8px'
+          gap: '8px',
+          position: 'relative',
+          zIndex: 1
         }}
       >
-        <Loader size="sm" color="orange" />
+        <Loader size="sm" color="orange" type="dots" />
       </Box>
     </Box>
   );

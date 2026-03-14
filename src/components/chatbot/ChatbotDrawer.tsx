@@ -1,12 +1,13 @@
 "use client"
 import {Drawer, Button, Title, Flex, Box, TextInput} from '@mantine/core';
 import {useAppSelector} from "@/lib/hooks";
-import {useEffect, useRef} from "react";
+import {useEffect, useRef, useState} from "react";
 import Message from "@/components/chatbot/Message";
 import LoadingMessage from "@/components/chatbot/LoadingMessage";
 import {IoIosSend} from "react-icons/io";
 import { RiAiGenerate2 } from "react-icons/ri";
 import { UseFormReturnType } from '@mantine/form';
+import {PlaceholdersAndVanishInput} from "@/components/ui/placeholders-and-vanish-input";
 
 interface FormValues {
   query: string;
@@ -26,16 +27,46 @@ type ChatbotProps = {
 
 export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProps) {
 
+  const [inputValue, setInputValue] = useState("");
   const chat = useAppSelector(state => state.assistant.chat) as ChatMessage[]
   const loading = useAppSelector(state => state.assistant.loading)
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
 
+  const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setInputValue(e.target.value);
+  };
+
+  const onSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    handleSubmit(inputValue);
+    setInputValue("");
+  };
+
   useEffect(() => {
-    if (bottomRef?.current) {
-      bottomRef.current!.scrollIntoView({ behavior: "smooth" });
+    if (opened) {
+      // Multiple attempts to ensure scroll happens after drawer opens
+      const scrollToBottom = () => {
+        if (bottomRef?.current) {
+          bottomRef.current.scrollIntoView({ behavior: "auto", block: "end" });
+        }
+      };
+
+      // Immediate scroll
+      scrollToBottom();
+
+      // Scroll after drawer starts opening
+      const timeout1 = setTimeout(scrollToBottom, 100);
+
+      // Scroll after drawer animation completes
+      const timeout2 = setTimeout(scrollToBottom, 300);
+
+      return () => {
+        clearTimeout(timeout1);
+        clearTimeout(timeout2);
+      };
     }
-  }, [chat]);
+  }, [opened]);
 
   // Hide main page scrollbar and prevent scrolling when chatbot drawer is open
   useEffect(() => {
@@ -88,67 +119,26 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
           </Flex>
         }
         position="right"
+        zIndex={1000000}
         overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
       >
         <Flex direction="column" gap={20}>
           <Box>
             {chat?.map((message, index) => <Message key={index} {...message} />)}
             {loading && <LoadingMessage />}
+
           </Box>
-          <Suggestions onSelect={handleSubmit} />
-          <form onSubmit={form.onSubmit((values: FormValues) => handleSubmit(values.query))}>
+
+
             <Flex direction="column" gap={20}>
               <Box mx={12}>
-                <TextInput
-                  data-autofocus
-                  placeholder="Create Message"
-                  key={form.key('query')}
-                  {...form.getInputProps('query')}
-                />
+                <PlaceholdersAndVanishInput placeholders={suggestedQuestions} onChange={handleChange} onSubmit={onSubmit} hero={false} />
               </Box>
-
-              <Flex justify="flex-end" mx={12} ref={bottomRef}>
-                <Button
-                  type="submit"
-                  loading={loading}
-                  variant="gradient"
-                  loaderProps={{ type: 'dots' }}
-                  rightSection={<IoIosSend size={20}/>}
-                >Send
-                </Button>
-              </Flex>
             </Flex>
-          </form>
-        </Flex>
-      </Drawer>
-  );
-}
 
-const Suggestions = ({ onSelect }) => {
-  return (
-    <div style={{
-      display: "flex",
-      flexWrap: "wrap",
-      gap: "8px",
-      marginTop: "10px"
-    }}>
-      {suggestedQuestions.map((q) => (
-        <button
-          key={q}
-          onClick={() => onSelect(q)}
-          style={{
-            padding: "6px 12px",
-            borderRadius: "20px",
-            border: "1px solid #ddd",
-            background: "#f7f7f7",
-            cursor: "pointer",
-            fontSize: "13px"
-          }}
-        >
-          {q}
-        </button>
-      ))}
-    </div>
+        </Flex>
+        <div ref={bottomRef} style={{ height: loading ? '200px' : '20px' }}/>
+      </Drawer>
   );
 }
 

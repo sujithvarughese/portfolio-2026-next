@@ -14,8 +14,8 @@ export function HeroForm({ form, handleSubmit, openDrawer }: HeroFormProps) {
 
   const placeholders = [
     "What are some of Sujith's skills?",
-    "What coding languages is he proficient in?",
-    "What are some recent apps Sujith has built?",
+    "What technologies does he specialize in?",
+    "What are some projects Sujith has built?",
     "How did you get built?",
   ];
 
@@ -45,6 +45,7 @@ export function HeroForm({ form, handleSubmit, openDrawer }: HeroFormProps) {
       onChange={handleChange}
       onSubmit={onSubmit}
       value={inputValue}
+      hero={true}
     />
   );
 }

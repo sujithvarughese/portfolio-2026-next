@@ -4,17 +4,21 @@ import { AnimatePresence, motion } from "motion/react";
 import { useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 import { RiAiGenerate2 } from "react-icons/ri";
+import { FaUser } from "react-icons/fa";
+
 
 export function PlaceholdersAndVanishInput({
   placeholders,
   onChange,
   onSubmit,
   value: externalValue,
+  hero
 }: {
   placeholders: string[];
   onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
   onSubmit: (e: React.FormEvent<HTMLFormElement>) => void;
   value?: string;
+  hero?: boolean;
 }) {
   const [currentPlaceholder, setCurrentPlaceholder] = useState(0);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
@@ -85,9 +89,15 @@ export function PlaceholdersAndVanishInput({
       onSubmit={handleSubmit}
     >
       {/* AI Icon */}
+      {hero ?
       <div className="absolute left-2 top-1/2 z-50 -translate-y-1/2 h-8 w-8 rounded-full bg-orange-500 dark:bg-orange-600 transition duration-200 flex items-center justify-center">
         <RiAiGenerate2 className="text-white h-4 w-4" />
       </div>
+        :
+        <div className="absolute left-2 top-1/2 z-50 -translate-y-1/2 h-8 w-8 rounded-full bg-blue-500 dark:bg-blue-600 transition duration-200 flex items-center justify-center">
+          <FaUser className="text-white h-4 w-4" />
+        </div>
+        }
 
       {/* Input with vanish animation */}
       <motion.input

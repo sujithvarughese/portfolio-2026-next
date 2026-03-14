@@ -189,3 +189,36 @@ body {
 [data-mantine-color-scheme] {
   overflow-x: hidden;
 }
+
+/* Chat Bubble Tails */
+.bubble-assistant, .bubble-user {
+  position: relative;
+}
+
+.bubble-assistant::before {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  left: -5px;
+  width: 10px;
+  height: 10px;
+  background: #fff3e0; /* Matches the top of assistant gradient */
+  transform: rotate(45deg);
+  border-left: 1px solid rgba(255, 138, 0, 0.2);
+  border-bottom: 1px solid rgba(255, 138, 0, 0.2);
+  z-index: 0;
+}
+
+.bubble-user::before {
+  content: "";
+  position: absolute;
+  bottom: 10px;
+  right: -5px;
+  width: 10px;
+  height: 10px;
+  background: #bbdefb; /* Matches the top of user gradient */
+  transform: rotate(45deg);
+  border-right: 1px solid rgba(34, 139, 230, 0.2);
+  border-top: 1px solid rgba(34, 139, 230, 0.2);
+  z-index: 0;
+}

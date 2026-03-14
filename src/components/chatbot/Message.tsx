@@ -17,7 +17,7 @@ const Message = ({ sender, message }: MessageProps) => {
       style={{
         display: 'flex',
         flexDirection: isUser ? 'row-reverse' : 'row',
-        alignItems: 'flex-start',
+        alignItems: 'flex-end',
         gap: '12px',
         margin: '16px 0',
         padding: '0 12px'
@@ -41,18 +41,21 @@ const Message = ({ sender, message }: MessageProps) => {
       </Box>
 
       <Box
+        className={isUser ? "bubble-user" : "bubble-assistant"}
         style={{
           background: isUser 
             ? 'linear-gradient(135deg, #e3f2fd, #bbdefb)' 
-            : 'linear-gradient(135deg, #fff3e0, #ffe0b2)',
-          borderRadius: '16px',
+            : 'linear-gradient(60deg, #fff3e0, #ffe0b2)',
+          borderRadius: isUser ? '18px 18px 4px 18px' : '18px 18px 18px 4px',
           padding: '12px 16px',
           maxWidth: '75%',
           wordBreak: 'break-word',
           boxShadow: '0 2px 8px rgba(0, 0, 0, 0.1)',
           border: isUser 
             ? '1px solid rgba(34, 139, 230, 0.2)' 
-            : '1px solid rgba(255, 138, 0, 0.2)'
+            : '1px solid rgba(255, 138, 0, 0.2)',
+          position: 'relative',
+          zIndex: 1
         }}
       >
         <Text
