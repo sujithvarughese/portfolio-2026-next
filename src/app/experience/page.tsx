@@ -29,7 +29,7 @@ export default function ExperiencePage() {
       open()
     }
     dispatch(addMessageToChat({ sender: "user", message: query}))
-    dispatch(fetchAiStream(query as any))
+    dispatch(fetchAiStream())
     form.reset()
   }
 

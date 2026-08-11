@@ -28,7 +28,7 @@ export default function ProjectsPage() {
       open()
     }
     dispatch(addMessageToChat({ sender: "user", message: query}))
-    dispatch(fetchAiStream(query as any))
+    dispatch(fetchAiStream())
     form.reset()
   }
 

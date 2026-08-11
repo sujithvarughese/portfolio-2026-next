@@ -10,11 +10,11 @@ const openai = new OpenAI({
 
 export async function POST(request: Request) {
   try {
-    const { query } = await request.json();
+    const { history } = await request.json();
 
-    if (!query) {
+    if (!history || !Array.isArray(history) || history.length === 0) {
       return NextResponse.json(
-        { error: 'Query is required' },
+        { error: 'Chat history is required' },
         { status: 400 }
       );
     }
@@ -26,6 +26,11 @@ export async function POST(request: Request) {
       );
     }
 
+    const input = history.map((msg: any) => ({
+      role: msg.sender === 'user' ? 'user' : 'assistant',
+      content: msg.message
+    }));
+
     const openaiStream = openai.responses.stream({
       model: 'gpt-4.1-mini',
       instructions: process.env.OPENAI_PROMPT,
@@ -36,7 +41,7 @@ export async function POST(request: Request) {
           max_num_results: 2,
         },
       ],
-      input: query,
+      input: input,
     });
     // Create a streaming response
     const encoder = new TextEncoder();

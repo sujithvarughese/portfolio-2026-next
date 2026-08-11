@@ -45,14 +45,17 @@ const chatbotSlice = createSlice({
   }
 })
 
-export const fetchAiStream = createAsyncThunk('chatbot/fetchAiStream', async (query, thunkAPI) => {
+export const fetchAiStream = createAsyncThunk('chatbot/fetchAiStream', async (_, thunkAPI) => {
+  const state = thunkAPI.getState() as { assistant: ChatState };
+  const history = state.assistant.chat;
+
   try {
     const response = await fetch("/api/chatbot", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
-      body: JSON.stringify({ query }),
+      body: JSON.stringify({ history }),
     });
 
     if (!response.ok) {
