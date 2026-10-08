@@ -1,4 +1,5 @@
 import OpenAI from 'openai';
+import type { ResponseInputItem } from 'openai/resources/responses/responses';
 import { NextResponse } from 'next/server';
 
 export const dynamic = 'force-dynamic';
@@ -26,9 +27,9 @@ export async function POST(request: Request) {
       );
     }
 
-    const input = history.map((msg: any) => ({
-      role: msg.sender === 'user' ? 'user' : 'assistant',
-      content: msg.message
+    const input: ResponseInputItem[] = history.map((msg: any) => ({
+      role: msg.sender === 'user' ? ('user' as const) : ('assistant' as const),
+      content: msg.message,
     }));
 
     const openaiStream = openai.responses.stream({
