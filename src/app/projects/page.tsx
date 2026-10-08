@@ -8,6 +8,7 @@ import Projects from "@/components/Projects";
 import { ChatbotDrawer } from "@/components/chatbot/ChatbotDrawer";
 import ChatbotButton from "@/components/chatbot/ChatbotButton";
 import { Box, Flex } from "@mantine/core";
+import { AuroraBackground } from "@/components/ui/aurora-background";
 
 export default function ProjectsPage() {
   const [opened, { open, close }] = useDisclosure(false);
@@ -35,18 +36,21 @@ export default function ProjectsPage() {
   return (
     <Box 
       className="font-sans items-center" 
-      style={{ 
+      style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
-        paddingTop: '80px'
+        paddingTop: '80px',
+        position: 'relative',
+        overflow: 'hidden'
       }}
     >
+      <AuroraBackground />
       <Navbar openAI={open} />
 
       <Box
-        maw={1400} 
+        maw={1400}
         m="auto"
-        style={{ position: 'relative' }}
+        style={{ position: 'relative', zIndex: 1 }}
       >
         <Flex justify="center" align="center" style={{ minHeight: 'calc(100vh - 80px)', padding: '20px' }}>
           <Box

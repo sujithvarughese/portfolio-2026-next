@@ -98,7 +98,7 @@ export const Navbar = ({ openAI }: NavbarProps) => {
               transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
             }}
             onClick={() => router.push('/')}
-            className="hidden md:block hover:text-blue-200 hover:scale-105"
+            className="hidden md:block hover:text-cyan-200 hover:scale-105"
           >
             {fullName}
           </Text>
@@ -134,28 +134,32 @@ export const Navbar = ({ openAI }: NavbarProps) => {
 
                   onClick={() => router.push(item.href)}
                   style={{
-                    backgroundColor: pathname === item.href 
-                      ? 'rgba(34, 139, 230, 0.8)' 
+                    background: pathname === item.href
+                      ? 'linear-gradient(135deg, #22d3ee, #a78bfa)'
                       : 'rgba(255, 255, 255, 0.1)',
                     color: 'white',
-                    border: pathname === item.href 
-                      ? '1px solid rgba(34, 139, 230, 0.6)' 
+                    border: pathname === item.href
+                      ? '1px solid rgba(167, 139, 250, 0.6)'
                       : '1px solid rgba(255, 255, 255, 0.2)',
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontWeight: 500,
                     textShadow: '0 1px 4px rgba(0, 0, 0, 0.8), 0 0 1px rgba(0, 0, 0, 0.9)',
-                    boxShadow: '0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
+                    boxShadow: pathname === item.href
+                      ? '0 2px 16px rgba(34, 211, 238, 0.4), inset 0 1px 0 rgba(255, 255, 255, 0.1)'
+                      : '0 2px 8px rgba(0, 0, 0, 0.3), inset 0 1px 0 rgba(255, 255, 255, 0.1)',
                     transition: 'all 0.3s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
                   }}
                   styles={{
                     root: {
                       '&:hover': {
-                        backgroundColor: pathname === item.href 
-                          ? 'rgba(34, 139, 230, 0.95)' 
+                        background: pathname === item.href
+                          ? 'linear-gradient(135deg, #38e0f5, #b794fb)'
                           : 'rgba(255, 255, 255, 0.25)',
-                        boxShadow: '0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
-                        border: pathname === item.href 
-                          ? '1px solid rgba(34, 139, 230, 0.8)' 
+                        boxShadow: pathname === item.href
+                          ? '0 6px 24px rgba(34, 211, 238, 0.55), inset 0 1px 0 rgba(255, 255, 255, 0.3)'
+                          : '0 6px 20px rgba(0, 0, 0, 0.5), inset 0 1px 0 rgba(255, 255, 255, 0.3)',
+                        border: pathname === item.href
+                          ? '1px solid rgba(167, 139, 250, 0.8)'
                           : '1px solid rgba(255, 255, 255, 0.4)'
                       }
                     }
@@ -255,12 +259,12 @@ export const Navbar = ({ openAI }: NavbarProps) => {
                     closeMobileMenu()
                   }}
                   style={{
-                    backgroundColor: pathname === item.href 
-                      ? 'rgba(34, 139, 230, 0.8)' 
+                    background: pathname === item.href
+                      ? 'linear-gradient(135deg, #22d3ee, #a78bfa)'
                       : 'rgba(255, 255, 255, 0.1)',
                     color: 'white',
-                    border: pathname === item.href 
-                      ? '1px solid rgba(34, 139, 230, 0.6)' 
+                    border: pathname === item.href
+                      ? '1px solid rgba(167, 139, 250, 0.6)'
                       : '1px solid rgba(255, 255, 255, 0.2)',
                     fontFamily: 'Space Grotesk, sans-serif',
                     fontWeight: 500,
@@ -293,7 +297,7 @@ export const Navbar = ({ openAI }: NavbarProps) => {
                 target="_blank" 
                 rel="noreferrer" 
                 style={{ 
-                  color: '#60a5fa',
+                  color: '#22d3ee',
                   fontSize: '16px',
                   fontFamily: 'Space Grotesk, sans-serif'
                 }}
@@ -305,7 +309,7 @@ export const Navbar = ({ openAI }: NavbarProps) => {
                 target="_blank" 
                 rel="noreferrer" 
                 style={{ 
-                  color: '#60a5fa',
+                  color: '#22d3ee',
                   fontSize: '16px',
                   fontFamily: 'Space Grotesk, sans-serif'
                 }}
@@ -317,7 +321,7 @@ export const Navbar = ({ openAI }: NavbarProps) => {
                 target="_blank" 
                 rel="noreferrer" 
                 style={{ 
-                  color: '#60a5fa',
+                  color: '#22d3ee',
                   fontSize: '16px',
                   fontFamily: 'Space Grotesk, sans-serif'
                 }}
@@ -329,7 +333,7 @@ export const Navbar = ({ openAI }: NavbarProps) => {
                 target="_blank" 
                 rel="noreferrer" 
                 style={{ 
-                  color: '#60a5fa',
+                  color: '#22d3ee',
                   fontSize: '16px',
                   fontFamily: 'Space Grotesk, sans-serif'
                 }}
@@ -341,7 +345,7 @@ export const Navbar = ({ openAI }: NavbarProps) => {
                 target="_blank" 
                 rel="noreferrer" 
                 style={{ 
-                  color: '#60a5fa',
+                  color: '#22d3ee',
                   fontSize: '16px',
                   fontFamily: 'Space Grotesk, sans-serif'
                 }}
@@ -370,7 +374,7 @@ export const Navbar = ({ openAI }: NavbarProps) => {
                 target="_blank" 
                 rel="noreferrer" 
                 style={{ 
-                  color: '#60a5fa',
+                  color: '#22d3ee',
                   fontSize: '16px',
                   fontFamily: 'Space Grotesk, sans-serif'
                 }}
@@ -382,7 +386,7 @@ export const Navbar = ({ openAI }: NavbarProps) => {
                 target="_blank" 
                 rel="noreferrer" 
                 style={{ 
-                  color: '#60a5fa',
+                  color: '#22d3ee',
                   fontSize: '16px',
                   fontFamily: 'Space Grotesk, sans-serif'
                 }}
@@ -394,7 +398,7 @@ export const Navbar = ({ openAI }: NavbarProps) => {
                 target="_blank" 
                 rel="noreferrer" 
                 style={{ 
-                  color: '#60a5fa',
+                  color: '#22d3ee',
                   fontSize: '16px',
                   fontFamily: 'Space Grotesk, sans-serif'
                 }}
@@ -410,13 +414,14 @@ export const Navbar = ({ openAI }: NavbarProps) => {
               component="a" 
               href={`mailto:${emailAddress}`}
               variant="gradient"
-              gradient={{ from: 'blue', to: 'green' }}
+              gradient={{ from: '#10b981', to: '#22d3ee', deg: 135 }}
               size="lg"
               radius="md"
               fullWidth
               style={{
                 fontFamily: 'Space Grotesk, sans-serif',
-                fontWeight: 600
+                fontWeight: 600,
+                boxShadow: '0 4px 20px rgba(16, 185, 129, 0.35)'
               }}
             >
               Contact Me

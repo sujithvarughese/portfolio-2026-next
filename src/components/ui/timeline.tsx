@@ -55,9 +55,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="text-3xl md:text-5xl mb-2 md:mb-6 text-black dark:text-white font-bold"
+          className="text-3xl md:text-5xl mb-2 md:mb-6 font-bold"
         >
-          Featured Projects
+          <span className="gradient-text-animated">Featured Projects</span>
         </motion.h2>
         <motion.p
           initial={{ opacity: 0, y: 20 }}
@@ -79,8 +79,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             className="flex justify-start md:pt-10 md:gap-10"
           >
             <div className="sticky flex flex-col md:flex-row z-40 items-center top-40 self-start max-w-xs lg:max-w-sm md:w-full">
-              <div className="h-6 md:h-12 absolute left-1 md:left-3 w-6 md:w-12 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg">
-                <div className="h-3 md:h-6 w-3 md:w-6 rounded-full bg-white dark:bg-black border-2 border-blue-200 dark:border-purple-300" />
+              <div className="relative h-6 md:h-12 absolute left-1 md:left-3 w-6 md:w-12 rounded-full bg-gradient-to-br from-cyan-400 to-violet-600 flex items-center justify-center shadow-lg">
+                <span className="absolute inset-0 rounded-full bg-cyan-400" style={{ animation: "ping-ring 2.5s ease-out infinite" }} />
+                <div className="relative h-3 md:h-6 w-3 md:w-6 rounded-full bg-white dark:bg-black border-2 border-cyan-200 dark:border-violet-300" />
               </div>
               <h3 className="hidden md:block text-xl md:pl-20 md:text-4xl font-bold text-neutral-600 dark:text-neutral-400">
                 {item.date}
@@ -88,7 +89,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
             </div>
 
             <div className="relative pr-2 md:pr-4 pl-8 w-full">
-              <Card shadow="lg" p={{ base: "md", md: "xl" }} radius="lg" className="mb-4 md:mb-6 bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800">
+              <Card shadow="lg" p={{ base: "md", md: "xl" }} radius="lg" className="hover-lift mb-4 md:mb-6 bg-white dark:bg-neutral-900 border border-neutral-100 dark:border-neutral-800">
                 <Flex direction="column" gap={{ base: "sm", md: "md" }}>
                   <Box>
                     <Title order={2} className="text-2xl md:text-3xl font-bold text-black dark:text-white mb-2">
@@ -144,7 +145,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
                           >
                             <Badge
                               variant="gradient"
-                              gradient={{ from: 'blue', to: 'purple' }}
+                              gradient={{ from: 'cyan', to: 'violet' }}
                               size="lg"
                               radius="md"
                               leftSection={logos[tech]}
@@ -244,14 +245,14 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           style={{
             height: height + "px",
           }}
-          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[3px] bg-gradient-to-b from-transparent via-blue-200 dark:via-purple-700 to-transparent [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
+          className="absolute md:left-8 left-8 top-0 overflow-hidden w-[3px] bg-gradient-to-b from-transparent via-cyan-200 dark:via-violet-700 to-transparent [mask-image:linear-gradient(to_bottom,transparent_0%,black_10%,black_90%,transparent_100%)]"
         >
           <motion.div
             style={{
               height: heightTransform,
               opacity: opacityTransform,
             }}
-            className="absolute inset-x-0 top-0 w-[3px] bg-gradient-to-b from-blue-500 via-purple-500 to-blue-600 rounded-full"
+            className="absolute inset-x-0 top-0 w-[3px] bg-gradient-to-b from-cyan-400 via-violet-500 to-pink-400 rounded-full"
           />
         </div>
       </div>

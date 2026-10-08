@@ -22,7 +22,7 @@ const ChatbotButton = ({ open, isScrolled = false }: ChatbotButtonProps) => {
         fontWeight: 600,
         fontSize: isScrolled ? '0.875rem' : '1rem',
         padding: isScrolled ? '8px 16px' : '12px 20px',
-        animation: 'pulse 2s infinite',
+        animation: 'glow-pulse 2.2s infinite',
         transition: 'all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94)'
       }}
       styles={{

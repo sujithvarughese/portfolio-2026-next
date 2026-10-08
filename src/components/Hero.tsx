@@ -8,6 +8,7 @@ import {SimpleTestimonials} from "@/components/ui/simple-testimonials";
 import { heroImages } from "@/data/data";
 import {IoIosSend} from "react-icons/io";
 import {HeroForm} from "@/components/chatbot/HeroForm";
+import {AuroraBackground} from "@/components/ui/aurora-background";
 const emailAddress = "sujith.varug@gmail.com"
 
 type HeroProps = {
@@ -47,17 +48,21 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
 
   return (
     <Box
-      style={{ 
+      style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
         paddingTop: '80px', // Add padding to account for navbar
-        overflowX: 'hidden'
+        overflow: 'hidden',
+        position: 'relative'
       }}
     >
-      <Box 
-        style={{ 
+      <AuroraBackground />
+      <Box
+        style={{
           maxWidth: '1400px',
-          margin: '0 auto'
+          margin: '0 auto',
+          position: 'relative',
+          zIndex: 1
         }}
       >
         <Flex direction={{ base: "column", md: "row" }} align="center" justify="center" style={{ minHeight: 'calc(100vh - 80px)' }} p={{ base: "sm", md: "xl" }}>
@@ -70,9 +75,14 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
               ease: "easeInOut",
               delay: 0,
             }}
-            className="md:mt-8 bg-gradient-to-br from-white to-gray-200 py-4 bg-clip-text text-center text-4xl font-medium tracking-tight text-transparent md:text-7xl"
+            className="md:mt-8 py-4 text-center text-4xl font-medium tracking-tight md:text-7xl"
           >
-            {fullName}
+            <span className="bg-gradient-to-br from-white to-gray-200 bg-clip-text text-transparent">
+              {fullName.split(" ")[0]}{" "}
+            </span>
+            <span className="gradient-text-animated">
+              {fullName.split(" ").slice(1).join(" ")}
+            </span>
           </motion.h1>
 
           <motion.p 
@@ -119,11 +129,11 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                   transition={{ duration: 0.5, delay: 1.0 }}
                 >
                   <Flex direction="column">
-                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718361/diploma_mv2evg.png" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>Bachelor's Diploma</Anchor>
-                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747725035/CompTIA_A_ce_certificate_tfbzb8.png" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>CompTIA A+</Anchor>
-                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747725095/Meta_front_end_certificate-_Coursera_eeuipu.png" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>Meta Front End Developer</Anchor>
-                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718364/accounting_certificate_ff7vvg.png" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>Accounting Technology</Anchor>
-                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718364/business_management_cert_kmza3i.png" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>Business Management</Anchor>
+                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718361/diploma_mv2evg.png" target="_blank" rel="noreferrer" className="transition-colors duration-200 hover:text-violet-300" style={{ color: '#22d3ee' }}>Bachelor's Diploma</Anchor>
+                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747725035/CompTIA_A_ce_certificate_tfbzb8.png" target="_blank" rel="noreferrer" className="transition-colors duration-200 hover:text-violet-300" style={{ color: '#22d3ee' }}>CompTIA A+</Anchor>
+                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747725095/Meta_front_end_certificate-_Coursera_eeuipu.png" target="_blank" rel="noreferrer" className="transition-colors duration-200 hover:text-violet-300" style={{ color: '#22d3ee' }}>Meta Front End Developer</Anchor>
+                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718364/accounting_certificate_ff7vvg.png" target="_blank" rel="noreferrer" className="transition-colors duration-200 hover:text-violet-300" style={{ color: '#22d3ee' }}>Accounting Technology</Anchor>
+                    <Anchor href="https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718364/business_management_cert_kmza3i.png" target="_blank" rel="noreferrer" className="transition-colors duration-200 hover:text-violet-300" style={{ color: '#22d3ee' }}>Business Management</Anchor>
                   </Flex>
                 </motion.div>
                 <motion.div
@@ -133,11 +143,21 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                 >
                   <Box>
                     <Flex direction="column">
-                      <Anchor href="/resume" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>Resumé</Anchor>
-                      <Anchor href="https://www.linkedin.com/in/sujithvarughese/" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>LinkedIn</Anchor>
-                      <Anchor href="http://github.com/sujithvarughese" target="_blank" rel="noreferrer" style={{ color: '#228be6' }}>GitHub</Anchor>
+                      <Anchor href="/resume" target="_blank" rel="noreferrer" className="transition-colors duration-200 hover:text-violet-300" style={{ color: '#22d3ee' }}>Resumé</Anchor>
+                      <Anchor href="https://www.linkedin.com/in/sujithvarughese/" target="_blank" rel="noreferrer" className="transition-colors duration-200 hover:text-violet-300" style={{ color: '#22d3ee' }}>LinkedIn</Anchor>
+                      <Anchor href="http://github.com/sujithvarughese" target="_blank" rel="noreferrer" className="transition-colors duration-200 hover:text-violet-300" style={{ color: '#22d3ee' }}>GitHub</Anchor>
                     </Flex>
-                    <Button my={12} component="a" variant="filled" color="green" href={`mailto:${emailAddress}`}>Contact Me</Button>
+                    <Button
+                      my={12}
+                      component="a"
+                      variant="gradient"
+                      gradient={{ from: '#10b981', to: '#22d3ee', deg: 135 }}
+                      href={`mailto:${emailAddress}`}
+                      className="hover-lift"
+                      style={{ boxShadow: '0 4px 20px rgba(16, 185, 129, 0.35)', border: 'none' }}
+                    >
+                      Contact Me
+                    </Button>
                   </Box>
                 </motion.div>
               </Flex>
