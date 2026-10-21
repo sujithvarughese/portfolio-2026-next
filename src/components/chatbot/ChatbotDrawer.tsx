@@ -2,6 +2,7 @@
 import {Drawer, Button, Title, Flex, Box, TextInput} from '@mantine/core';
 import {useAppSelector} from "@/lib/hooks";
 import {useEffect, useRef, useState} from "react";
+import Lenis from 'lenis';
 import Message from "@/components/chatbot/Message";
 import LoadingMessage from "@/components/chatbot/LoadingMessage";
 import {IoIosSend} from "react-icons/io";
@@ -33,6 +34,8 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
   const loading = useAppSelector(state => state.assistant.loading)
 
   const bottomRef = useRef<HTMLDivElement | null>(null);
+  const scrollRef = useRef<HTMLDivElement | null>(null);
+  const lenisRef = useRef<Lenis | null>(null);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
@@ -44,12 +47,49 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
     setInputValue("");
   };
 
+  // Nested Lenis instance for buttery smooth scrolling inside the drawer
+  useEffect(() => {
+    if (!opened || !scrollRef.current) return;
+
+    const wrapper = scrollRef.current;
+    const content = wrapper.firstElementChild as HTMLElement | null;
+    if (!content) return;
+
+    const lenis = new Lenis({
+      wrapper,
+      content,
+      duration: 1.0,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)),
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.5,
+    });
+    lenisRef.current = lenis;
+
+    let rafId = 0;
+    const raf = (time: number) => {
+      lenis.raf(time);
+      rafId = requestAnimationFrame(raf);
+    };
+    rafId = requestAnimationFrame(raf);
+
+    return () => {
+      cancelAnimationFrame(rafId);
+      lenis.destroy();
+      lenisRef.current = null;
+    };
+  }, [opened]);
+
   useEffect(() => {
     if (opened) {
       // Multiple attempts to ensure scroll happens after drawer opens
       const scrollToBottom = () => {
-        if (bottomRef?.current) {
-          bottomRef.current.scrollIntoView({ behavior: "auto", block: "end" });
+        const lenis = lenisRef.current;
+        const wrapper = scrollRef.current;
+        if (lenis && bottomRef.current) {
+          lenis.scrollTo(bottomRef.current, { immediate: true });
+        } else if (wrapper) {
+          wrapper.scrollTop = wrapper.scrollHeight;
         }
       };
 
@@ -67,7 +107,7 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
         clearTimeout(timeout2);
       };
     }
-  }, [opened, isLoading]);
+  }, [opened, isLoading, chat.length]);
 
   // Hide main page scrollbar and prevent scrolling when chatbot drawer is open
   useEffect(() => {
@@ -122,23 +162,31 @@ export function ChatbotDrawer({ opened, close, form, handleSubmit }: ChatbotProp
         position="right"
         zIndex={1000000}
         overlayProps={{ backgroundOpacity: 0.5, blur: 4 }}
+        styles={{
+          body: { height: 'calc(100% - 60px)', padding: 0, overflow: 'hidden' },
+        }}
       >
-        <Flex direction="column" gap={20}>
-          <Box>
-            {chat?.map((message, index) => <Message key={index} {...message} />)}
-            {loading && <LoadingMessage />}
-
-          </Box>
-
-
+        <div
+          ref={scrollRef}
+          data-lenis-prevent
+          style={{ height: '100%', overflowY: 'auto', overflowX: 'hidden' }}
+        >
+          <div style={{ padding: 'var(--mantine-spacing-md)' }}>
             <Flex direction="column" gap={20}>
-              <Box mx={12}>
-                <PlaceholdersAndVanishInput placeholders={suggestedQuestions} onChange={handleChange} onSubmit={onSubmit} hero={false} />
+              <Box>
+                {chat?.map((message, index) => <Message key={index} {...message} />)}
+                {loading && <LoadingMessage />}
               </Box>
-            </Flex>
 
-        </Flex>
-        <div ref={bottomRef} style={{ height: '16px' }}/>
+              <Flex direction="column" gap={20}>
+                <Box mx={12}>
+                  <PlaceholdersAndVanishInput placeholders={suggestedQuestions} onChange={handleChange} onSubmit={onSubmit} hero={false} />
+                </Box>
+              </Flex>
+            </Flex>
+            <div ref={bottomRef} style={{ height: '16px' }} />
+          </div>
+        </div>
       </Drawer>
   );
 }
