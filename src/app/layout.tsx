@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import StoreProvider from "@/lib/StoreProvider";
+import SmoothScrollProvider from "@/lib/SmoothScrollProvider";
 import {MantineProvider, createTheme} from "@mantine/core";
 import '@mantine/core/styles.css';
 
@@ -47,7 +48,9 @@ export default function RootLayout({
       <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} antialiased`} suppressHydrationWarning>
         <MantineProvider theme={theme}>
           <StoreProvider>
-            {children}
+            <SmoothScrollProvider>
+              {children}
+            </SmoothScrollProvider>
           </StoreProvider>
         </MantineProvider>
       </body>
