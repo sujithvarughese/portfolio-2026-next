@@ -29,7 +29,8 @@ export const heroImages = [
     quote: "Good code solves a problem. Great systems prevent problems from happening in the first place."
   },
   {
-    src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1756334025/profile-small-1_natntd_kfbibb.png",
+    src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718387/profile-1_izyy3j.png",
+    srcMobile: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718380/profile-small-1_natntd.png",
     quote: "The best developers today combine deep technical fundamentals with the ability to leverage AI to move faster."
   },
 ]
