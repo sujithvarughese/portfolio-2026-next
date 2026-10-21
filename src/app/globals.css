@@ -311,28 +311,30 @@ html.lenis body {
 .hero-info-card {
   position: absolute;
   left: 0;
-  bottom: -8%;
-  width: 85%;
-  max-width: 380px;
+  bottom: 4%;
+  width: 66%;
+  max-width: 280px;
+  margin-left: 1rem;
   z-index: 2;
 }
 
 @media (min-width: 640px) {
   .hero-info-card {
-    bottom: auto;
-    top: 50%;
-    transform: translateY(-50%);
     left: -2%;
+    bottom: 6%;
     width: 60%;
     max-width: 440px;
+    margin-left: 1.5rem;
   }
 }
 
 @media (min-width: 1024px) {
   .hero-info-card {
     left: -4%;
+    bottom: 8%;
     width: 42%;
     max-width: 480px;
+    margin-left: 2rem;
   }
 }
 
@@ -370,6 +372,27 @@ html.lenis body {
 }
 .hero-arrow-static:hover {
   transform: scale(1.05);
+}
+
+/* ===== Hero role highlights (Programmer / Developer / Engineer) ===== */
+.hero-role {
+  border-left: none;
+  border-top: 1px solid rgba(34, 211, 238, 0.25);
+  padding-top: 1rem;
+}
+.hero-role:first-child {
+  border-top: none;
+  padding-top: 0.5rem;
+}
+
+@media (min-width: 768px) {
+  .hero-role {
+    border-top: none;
+    padding-top: 0.5rem;
+  }
+  .hero-role-divider {
+    border-left: 2px solid rgba(34, 211, 238, 0.35);
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {

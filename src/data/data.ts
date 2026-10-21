@@ -21,11 +21,13 @@ export const heroImages = [
     quote: "Transforming complex ideas into scalable platforms and intelligent systems that power real-world applications."
   },
   {
-    src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718379/hera_sbp9lo.jpg",
+    src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1792610938/Image_odunkw.jpg",
+    srcMobile: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1792607787/Image_qxllnh.jpg",
     quote: "Modern software engineering is about combining strong architecture, cloud infrastructure, and AI-driven engineering workflows to build powerful, scalable products."
   },
   {
-    src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1756333768/IMG_3300_kqo8vq.jpg",
+    src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1792611268/IMG_3300_q9zhcl.png",
+    srcMobile: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1792611052/IMG_3300_moxalr.jpg",
     quote: "Good code solves a problem. Great systems prevent problems from happening in the first place."
   },
   {

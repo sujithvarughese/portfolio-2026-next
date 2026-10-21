@@ -1,9 +1,9 @@
 "use client"
 import { motion, AnimatePresence } from "motion/react"
-import { fullName, bio, heroImages } from '@/data/data'
+import { fullName, bio, heroImages, deploymentSkills, fullStackSkills, softwareSkills } from '@/data/data'
 import React, { useEffect, useState } from 'react'
 import { IoLocationSharp } from "react-icons/io5";
-import { IconArrowLeft, IconArrowRight } from "@tabler/icons-react";
+import { IconArrowLeft, IconArrowRight, IconDeviceDesktop, IconStack2, IconAffiliate } from "@tabler/icons-react";
 import { Anchor, Box, Button, Flex, Title } from '@mantine/core'
 import { HeroForm } from "@/components/chatbot/HeroForm";
 import { AuroraBackground } from "@/components/ui/aurora-background";
@@ -68,12 +68,13 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
       style={{
         minHeight: '100vh',
         background: 'linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #334155 100%)',
-        paddingTop: '80px',
+        paddingTop: '96px',
         overflow: 'hidden',
         position: 'relative'
       }}
     >
       <AuroraBackground />
+
       <Box
         style={{
           maxWidth: '1280px',
@@ -84,14 +85,36 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
         }}
         px={{ base: 'sm', md: 'xl' }}
         py={{ base: 'md', md: 'xl' }}
+
       >
         <Flex
           direction="column"
           align="center"
-          justify="center"
-          gap={{ base: 'xl', md: '3rem' }}
-          style={{ minHeight: 'calc(100vh - 80px)', width: '100%' }}
+          justify="flex-start"
+          gap={{ base: 'lg', md: '2rem' }}
+          style={{ width: '100%', paddingBottom: '2rem' }}
         >
+          {/* ===== Chat input below ===== */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.6 }}
+            style={{ width: '100%', maxWidth: '640px' }}
+          >
+            <Box
+              style={{
+                background: 'rgba(255,255,255,0.96)',
+                borderRadius: '18px',
+                padding: '1.25rem 1.5rem',
+                boxShadow:
+                  '0 20px 50px -15px rgba(0,0,0,0.5), 0 8px 20px -10px rgba(0,0,0,0.3)',
+                border: '1px solid rgba(255,255,255,0.3)',
+              }}
+            >
+              <HeroForm form={form} handleSubmit={handleSubmit} openDrawer={openDrawer} />
+            </Box>
+          </motion.div>
+
           {/* ===== Overlapping boxes: picture + info card ===== */}
           <Box
             style={{
@@ -105,13 +128,13 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, ease: 'easeOut' }}
-              className="relative aspect-[3/4] md:aspect-[4/3] overflow-hidden rounded-2xl md:rounded-3xl"
+              className="relative aspect-[3/4] md:aspect-[16/9] overflow-hidden rounded-2xl md:rounded-3xl"
               style={{
                 boxShadow:
                   '0 25px 60px -15px rgba(0,0,0,0.55), 0 10px 25px -10px rgba(0,0,0,0.4)',
                 border: '1px solid rgba(255,255,255,0.08)',
                 marginLeft: 'auto',
-                marginRight: 0,
+                marginRight: 'auto',
                 width: '100%',
               }}
             >
@@ -152,7 +175,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                   borderRadius: '20px',
                   boxShadow:
                     '0 25px 60px -15px rgba(0,0,0,0.6), 0 10px 25px -10px rgba(34,211,238,0.15)',
-                  padding: '1.25rem 1.5rem',
+                  padding: '1.25rem 1.5rem 1.25rem 1.75rem',
                 }}
               >
                 <Title
@@ -162,6 +185,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                     fontSize: 'clamp(1.75rem, 4vw, 3rem)',
                     lineHeight: 1.1,
                     marginBottom: '0.5rem',
+                    textAlign: 'center'
                   }}
                 >
                   <span className="bg-gradient-to-br from-white to-gray-200 bg-clip-text text-transparent">
@@ -193,8 +217,8 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                 </Flex>
 
                 <Flex
-                  direction={{ base: 'column', lg: 'row' }}
-                  gap={{ base: 4, lg: 'xl' }}
+                  direction="row"
+                  gap={{ base: 'sm', lg: 'xl' }}
                   align="flex-start"
                   mb={12}
                 >
@@ -305,7 +329,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
               alignItems: 'center',
               columnGap: '1rem',
               width: '100%',
-              maxWidth: '820px',
+              maxWidth: '640px',
               minHeight: '3.5rem',
             }}
           >
@@ -384,34 +408,88 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
             </button>
           </div>
 
-          {/* ===== Chat input below ===== */}
+          {/* ===== Roles / highlights (Programmer / Developer / Engineer) ===== */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.6 }}
-            style={{ width: '100%', maxWidth: '640px' }}
+            transition={{ duration: 0.6, delay: 0.4 }}
+            style={{ width: '100%', maxWidth: '1100px', marginTop: '1rem' }}
           >
             <Box
               style={{
-                background: 'rgba(255,255,255,0.96)',
-                borderRadius: '18px',
-                padding: '1.25rem 1.5rem',
+                background:
+                  'linear-gradient(135deg, rgba(15,23,42,0.6) 0%, rgba(30,41,59,0.6) 100%)',
+                backdropFilter: 'blur(14px)',
+                WebkitBackdropFilter: 'blur(14px)',
+                border: '1px solid rgba(255,255,255,0.1)',
+                borderRadius: '20px',
                 boxShadow:
-                  '0 20px 50px -15px rgba(0,0,0,0.5), 0 8px 20px -10px rgba(0,0,0,0.3)',
-                border: '1px solid rgba(255,255,255,0.3)',
+                  '0 25px 60px -15px rgba(0,0,0,0.5), 0 10px 25px -10px rgba(34,211,238,0.12)',
+                padding: '1.5rem',
               }}
             >
-              <Title
-                order={4}
-                ta="center"
-                mb={12}
-                style={{ color: '#1f2937', fontWeight: 600 }}
+              <Flex
+                direction={{ base: 'column', md: 'row' }}
+                gap={{ base: 'lg', md: 0 }}
+                align="stretch"
+                justify="space-between"
               >
-                AI Assistant
-              </Title>
-              <HeroForm form={form} handleSubmit={handleSubmit} openDrawer={openDrawer} />
+                {[
+                  {
+                    Icon: IconDeviceDesktop,
+                    title: 'Programmer.',
+                    desc: softwareSkills,
+                  },
+                  {
+                    Icon: IconStack2,
+                    title: 'Developer.',
+                    desc: fullStackSkills,
+                  },
+                  {
+                    Icon: IconAffiliate,
+                    title: 'Engineer.',
+                    desc: deploymentSkills,
+                  },
+                ].map(({ Icon, title, desc }, i) => (
+                  <Box
+                    key={title}
+                    style={{ flex: 1, padding: '0.5rem 1.25rem' }}
+                    className={i === 0 ? 'hero-role' : 'hero-role hero-role-divider'}
+                  >
+                    <Flex align="center" gap={10} mb={10}>
+                      <Icon
+                        size={28}
+                        color="#22d3ee"
+                        stroke={2}
+                      />
+                      <Title
+                        order={3}
+                        style={{
+                          color: 'white',
+                          fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
+                          fontWeight: 700,
+                          margin: 0,
+                        }}
+                      >
+                        {title}
+                      </Title>
+                    </Flex>
+                    <p
+                      style={{
+                        color: 'rgba(255,255,255,0.75)',
+                        fontSize: '0.95rem',
+                        lineHeight: 1.55,
+                        margin: 0,
+                      }}
+                    >
+                      {desc}
+                    </p>
+                  </Box>
+                ))}
+              </Flex>
             </Box>
           </motion.div>
+
         </Flex>
       </Box>
     </Box>
