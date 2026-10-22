@@ -3,7 +3,14 @@ import { motion, AnimatePresence } from "motion/react"
 import { fullName, bio, heroProfileImage, quotes, deploymentSkills, fullStackSkills, softwareSkills } from '@/data/data'
 import React, { useEffect, useState } from 'react'
 import { IoLocationSharp } from "react-icons/io5";
-import { IconArrowLeft, IconArrowRight, IconDeviceDesktop, IconStack2, IconAffiliate } from "@tabler/icons-react";
+import {
+  IconArrowLeft,
+  IconArrowRight,
+  IconDeviceDesktop,
+  IconStack2,
+  IconAffiliate,
+  IconSparkles
+} from "@tabler/icons-react";
 import { Anchor, Box, Button, Flex, Title } from '@mantine/core'
 import { HeroForm } from "@/components/chatbot/HeroForm";
 import { AuroraBackground } from "@/components/ui/aurora-background";
@@ -109,14 +116,50 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
           >
             <Box
               style={{
-                background: 'rgba(255,255,255,0.96)',
-                borderRadius: '18px',
-                padding: '1.25rem 1.5rem',
+                position: 'relative',
+                borderRadius: '22px',
+                padding: '1.1rem 1.25rem 1.25rem',
+                background:
+                  'linear-gradient(135deg, rgba(15,23,42,0.78) 0%, rgba(30,41,59,0.78) 100%)',
+                backdropFilter: 'blur(16px)',
+                WebkitBackdropFilter: 'blur(16px)',
+                border: '1px solid rgba(255,255,255,0.12)',
                 boxShadow:
-                  '0 20px 50px -15px rgba(0,0,0,0.5), 0 8px 20px -10px rgba(0,0,0,0.3)',
-                border: '1px solid rgba(255,255,255,0.3)',
+                  '0 25px 60px -15px rgba(0,0,0,0.6), 0 10px 25px -10px rgba(34,211,238,0.18)',
               }}
             >
+              <Flex align="center" justify="space-between" mb={10} px={4}>
+                <Flex align="center" gap={8}>
+                  <span className="hero-ai-badge" aria-hidden="true">
+                    <IconSparkles size={14} stroke={2.25} />
+                  </span>
+                  <span
+                    style={{
+                      color: 'rgba(255,255,255,0.92)',
+                      fontSize: '0.85rem',
+                      fontWeight: 600,
+                      letterSpacing: '0.02em',
+                    }}
+                  >
+                    Ask the AI Assistant
+                  </span>
+                </Flex>
+                <span
+                  style={{
+                    color: 'rgba(34,211,238,0.85)',
+                    fontSize: '0.7rem',
+                    fontWeight: 600,
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.12em',
+                    display: 'inline-flex',
+                    alignItems: 'center',
+                    gap: 6,
+                  }}
+                >
+                  <span className="hero-ai-pulse" aria-hidden="true" />
+                  Online
+                </span>
+              </Flex>
               <HeroForm form={form} handleSubmit={handleSubmit} openDrawer={openDrawer} />
             </Box>
           </motion.div>
