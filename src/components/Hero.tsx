@@ -1,6 +1,6 @@
 "use client"
 import { motion, AnimatePresence } from "motion/react"
-import { fullName, bio, heroImages, deploymentSkills, fullStackSkills, softwareSkills } from '@/data/data'
+import { fullName, bio, heroProfileImage, quotes, deploymentSkills, fullStackSkills, softwareSkills } from '@/data/data'
 import React, { useEffect, useState } from 'react'
 import { IoLocationSharp } from "react-icons/io5";
 import { IconArrowLeft, IconArrowRight, IconDeviceDesktop, IconStack2, IconAffiliate } from "@tabler/icons-react";
@@ -42,21 +42,27 @@ const TypewriterText = ({ text, delay = 0 }: { text: string; delay?: number }) =
 };
 
 const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
-  const [activeImage, setActiveImage] = useState(0);
+  const [activeQuote, setActiveQuote] = useState(0);
+  const [direction, setDirection] = useState<1 | -1>(1);
   const [isMobile, setIsMobile] = useState(false);
-  const total = heroImages.length;
-  const handlePrev = () =>
-    setActiveImage((prev) => (prev - 1 + total) % total);
-  const handleNext = () => setActiveImage((prev) => (prev + 1) % total);
-  const current = heroImages[activeImage];
+  const totalQuotes = quotes.length;
+  const handlePrev = () => {
+    setDirection(-1);
+    setActiveQuote((prev) => (prev - 1 + totalQuotes) % totalQuotes);
+  };
+  const handleNext = () => {
+    setDirection(1);
+    setActiveQuote((prev) => (prev + 1) % totalQuotes);
+  };
+  const currentQuote = quotes[activeQuote];
   const currentSrc =
-    isMobile && 'srcMobile' in current && current.srcMobile
-      ? current.srcMobile
-      : current.src;
+    isMobile && heroProfileImage.srcMobile
+      ? heroProfileImage.srcMobile
+      : heroProfileImage.src;
 
   useEffect(() => {
     if (typeof window === 'undefined') return;
-    const mql = window.matchMedia('(max-width: 640px)');
+    const mql = window.matchMedia('(max-width: 767px)');
     const update = () => setIsMobile(mql.matches);
     update();
     mql.addEventListener('change', update);
@@ -94,7 +100,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
           gap={{ base: 'lg', md: '2rem' }}
           style={{ width: '100%', paddingBottom: '2rem' }}
         >
-          {/* ===== Chat input below ===== */}
+          {/* ===== Chat input above ===== */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
@@ -138,24 +144,17 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                 width: '100%',
               }}
             >
-              <AnimatePresence mode="wait">
-                <motion.img
-                  key={currentSrc}
-                  src={currentSrc}
-                  alt={fullName}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.4 }}
-                  style={{
-                    width: '100%',
-                    height: '100%',
-                    objectFit: 'cover',
-                    objectPosition: 'center',
-                    display: 'block',
-                  }}
-                />
-              </AnimatePresence>
+              <img
+                src={currentSrc}
+                alt={fullName}
+                style={{
+                  width: '100%',
+                  height: '100%',
+                  objectFit: 'cover',
+                  objectPosition: 'center',
+                  display: 'block',
+                }}
+              />
             </motion.div>
 
             {/* Info card — overlaps the picture */}
@@ -330,12 +329,12 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
               columnGap: '1rem',
               width: '100%',
               maxWidth: '640px',
-              minHeight: '3.5rem',
+              height: '5rem',
             }}
           >
             <button
               type="button"
-              aria-label="Previous image"
+              aria-label="Previous quote"
               onClick={handlePrev}
               style={{
                 position: 'relative',
@@ -359,14 +358,28 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
               <IconArrowLeft className="h-5 w-5" />
             </button>
 
-            <div style={{ minWidth: 0, textAlign: 'center' }}>
-              <AnimatePresence mode="wait">
+            <div
+              style={{
+                minWidth: 0,
+                textAlign: 'center',
+                position: 'relative',
+                height: '100%',
+                overflow: 'hidden',
+              }}
+            >
+              <AnimatePresence mode="wait" initial={false} custom={direction}>
                 <motion.p
-                  key={current.quote}
-                  initial={{ opacity: 0, y: 8 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  exit={{ opacity: 0, y: -8 }}
-                  transition={{ duration: 0.35 }}
+                  key={activeQuote}
+                  custom={direction}
+                  variants={{
+                    enter: (dir: number) => ({ opacity: 0, x: dir * 40 }),
+                    center: { opacity: 1, x: 0 },
+                    exit: (dir: number) => ({ opacity: 0, x: dir * -40 }),
+                  }}
+                  initial="enter"
+                  animate="center"
+                  exit="exit"
+                  transition={{ duration: 0.35, ease: 'easeInOut' }}
                   style={{
                     color: 'rgba(255,255,255,0.85)',
                     fontSize: 'clamp(0.9rem, 1.4vw, 1.05rem)',
@@ -374,16 +387,21 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                     fontStyle: 'italic',
                     margin: 0,
                     padding: '0 1rem',
+                    position: 'absolute',
+                    inset: 0,
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
                   }}
                 >
-                  &ldquo;{current.quote}&rdquo;
+                  &ldquo;{currentQuote}&rdquo;
                 </motion.p>
               </AnimatePresence>
             </div>
 
             <button
               type="button"
-              aria-label="Next image"
+              aria-label="Next quote"
               onClick={handleNext}
               style={{
                 position: 'relative',

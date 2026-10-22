@@ -15,6 +15,20 @@ export const mobileWarning = "Note: Please be warned this app was designed for m
 
 export const emailAddress = "sujith.varug@gmail.com"
 
+export const heroProfileImage = {
+  src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718387/profile-1_izyy3j.png",
+  srcMobile: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718380/profile-small-1_natntd.png",
+}
+
+export const quotes = [
+  "Great software reflects a clear understanding of both the technology behind it and the people who depend on it.",
+  "Modern software engineering is about combining strong architecture and AI-driven engineering workflows to build powerful, scalable products.",
+  "Good code solves a problem. Great systems prevent problems from happening in the first place.",
+  "Reliable systems are designed with the expectation that requirements will change, traffic will grow, and failures will occur.",
+  "Effective automation reduces repetitive work and gives people more time for decisions that require judgment.",
+  "Strong architecture makes software easier to maintain, extend, and adapt as a product evolves."
+]
+
 export const heroImages = [
   {
     src: "https://res.cloudinary.com/dts8hi7rg/image/upload/v1747718384/profile_wyz7ae.jpg",
