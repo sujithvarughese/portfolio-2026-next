@@ -431,7 +431,7 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.4 }}
-            style={{ width: '100%', maxWidth: '1100px', marginTop: '1rem' }}
+            style={{ width: '100%', maxWidth: '1100px' }}
           >
             <Box
               style={{
@@ -455,17 +455,17 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                 {[
                   {
                     Icon: IconDeviceDesktop,
-                    title: 'Programmer.',
+                    title: 'Software Engineering.',
                     desc: softwareSkills,
                   },
                   {
                     Icon: IconStack2,
-                    title: 'Developer.',
+                    title: 'Systems & Cloud Architecture.',
                     desc: fullStackSkills,
                   },
                   {
                     Icon: IconAffiliate,
-                    title: 'Engineer.',
+                    title: 'AI Integration & Automation.',
                     desc: deploymentSkills,
                   },
                 ].map(({ Icon, title, desc }, i) => (
@@ -484,8 +484,8 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                         order={3}
                         style={{
                           color: 'white',
-                          fontSize: 'clamp(1.25rem, 2vw, 1.6rem)',
-                          fontWeight: 700,
+                          fontSize: '1.1rem',
+                          fontWeight: 800,
                           margin: 0,
                         }}
                       >
@@ -495,8 +495,8 @@ const Hero: React.FC<HeroProps> = ({ form, handleSubmit, openDrawer }) => {
                     <p
                       style={{
                         color: 'rgba(255,255,255,0.75)',
-                        fontSize: '0.95rem',
-                        lineHeight: 1.55,
+                        fontSize: '.9rem',
+                        lineHeight: 1.35,
                         margin: 0,
                       }}
                     >
