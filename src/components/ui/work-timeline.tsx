@@ -36,7 +36,7 @@ export const WorkTimeline = ({ data }: { data: ExperienceEntry[] }) => {
       ref={containerRef}
       style={{ position: 'relative' }}
     >
-      <div className="max-w-7xl mx-auto py-8 md:py-20 px-2 md:px-8 lg:px-10">
+      <div className="max-w-7xl mx-auto pt-8 pb-4 px-2 md:px-8 lg:px-10">
         <motion.h2
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -49,7 +49,7 @@ export const WorkTimeline = ({ data }: { data: ExperienceEntry[] }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-neutral-700 dark:text-neutral-300 text-base md:text-xl max-w-3xl"
+          className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-3xl"
         >
           My professional journey through various roles in software development,
           from junior developer to full-stack engineer, showcasing growth and expanding expertise.

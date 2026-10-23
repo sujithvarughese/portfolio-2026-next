@@ -49,7 +49,8 @@ export const projects = [
 		tech: ["TypeScript", "NodeJS", "Expo", "React", "MongoDB", "Mantine UI", "API Integration", "CI/CD", "Testing", "HTML", "CSS"],
 		featured: true,
 		isMobile: false,
-		width: "50%"
+		width: "50%",
+		date: "2024"
 	},
 	{
 		title: "MedScope",
@@ -75,7 +76,6 @@ export const projects = [
 		featured: false,
 		isMobile: false,
 		width: "50%",
-		date: "2024"
 	},
 	{
 		title: "LeaseWise",

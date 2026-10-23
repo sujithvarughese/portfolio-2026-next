@@ -50,7 +50,7 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
       className="w-full bg-gray-50 dark:bg-neutral-950 font-sans"
       ref={containerRef}
     >
-      <div className="max-w-7xl mx-auto py-8 md:py-20 px-4 md:px-8 lg:px-10">
+      <div className="max-w-7xl mx-auto pt-8 pb-4 px-4 md:px-8 lg:px-10">
         <motion.h2 
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -63,9 +63,9 @@ export const Timeline = ({ data }: { data: TimelineEntry[] }) => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="text-neutral-700 dark:text-neutral-300 text-base md:text-xl max-w-3xl"
+          className="text-neutral-700 dark:text-neutral-300 text-base md:text-lg max-w-3xl"
         >
-          A showcase of the web and mobile applications I’ve designed, built, and deployed over the past five years, highlighting growth, creativity, and technical skill.
+          A showcase of the web and mobile applications I’ve designed, built, and deployed over the past five years, highlighting growth, creativity, and technical skill. (Built before “build me an app” became a prompt.)
         </motion.p>
       </div>
 
